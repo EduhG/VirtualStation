@@ -1,7 +1,7 @@
 .header {
     height: 100vh;
     position: relative;
-    background: url(../images/kenya_police.jpg);
+    background: url(../images/dawn-190055.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -9,9 +9,11 @@
 
 .header-container {
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
 }
 
 .header-container nav {
     background-color: #090F22;
+    /*background: rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);*/
 }
