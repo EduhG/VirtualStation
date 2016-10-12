@@ -15,21 +15,25 @@ class UserModelTestCase(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
+    # test for non blank passwords
     def test_password_setter(self):
         user = User(password='password')
-        self.assertTrue(u.password_hash is not None)
+        self.assertTrue(user.password_hash is not None)
 
+    # test for blank passwords
     def test_no_password_getter(self):
         user = User(password='password')
         with self.assertRaises(AttributeError):
             user.password
 
+    # test password_verification function. decrypted password should match raw password
     def test_password_verification(self):
         user = User(password='password')
         self.assertTrue(user.verify_password('password'))
         self.assertFalse(user.verify_password('password1'))
 
-    def test_password_salts_are_random(self):
+    # two salted passwords should not match
+    def test_password_salts_dont_match(self):
         user = User(password='password')
         user2 = User(password='password')
         self.assertTrue(user.password_hash != user2.password_hash)
