@@ -5,11 +5,12 @@ from config import config
 
 
 def create_app(config_name):
-    app = Flask(__name__, instance_relative_config=True)
+    # app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__)
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
 
-    app.config.from_pyfile('config.py')
+    # app.config.from_pyfile('config.py')
 
     app.logger.addHandler(logging.StreamHandler(sys.stdout))
     app.logger.setLevel(logging.ERROR)
