@@ -54,18 +54,27 @@
                             <a href="#" class="brand-logo" style="padding-left: 20px">Virtual Station</a>
 
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
-
+                                {% if current_user.is_authenticated %}
+                                    <li><a href="{{ url_for('auth.signout') }}">Sign Out</a></li>
+                                {% else %}
+                                    <li><a href="{{ url_for('auth.signin') }}">Sign In</a></li>
+                                {% endif %}
                             </ul>
                         </div>
                     </nav>
                 </div>
+
+                <div class="row">
+                    <h1>Hello, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+                </div>
             </div>
+
         </div>
     </div>
 
     <!-- ================================================
     Scripts
-    ================================================ -->
+    ================================================= -->
 
     <!-- jQuery Library -->
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

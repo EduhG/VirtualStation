@@ -68,7 +68,7 @@
     <div class="">
         <div id="login-page" class="row" style="width:400px; padding-top: 20px">
             <div class="col s12 z-depth-6 card-panel">
-                <form class="login-form" action="" method=post>
+                <form class="login-form" action="{{ url_for('auth.signin') }}" method=post>
                     {{ form.hidden_tag() }}
 
                     <div class="row">

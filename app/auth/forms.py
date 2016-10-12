@@ -8,10 +8,3 @@ class SigninForm(Form):
     remember_me = BooleanField('remember_me', default=False)
 
     submit = SubmitField("Sign In")
-
-    def __init__(self, *args, **kwargs):
-        Form.__init__(self, *args, **kwargs)
-
-    def validate(self):
-        if not Form.validate(self):
-            return False
