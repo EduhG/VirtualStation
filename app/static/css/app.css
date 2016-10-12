@@ -1,0 +1,17 @@
+.header {
+    height: 100vh;
+    position: relative;
+    background: url(../images/kenya_police.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.header-container {
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.header-container nav {
+    background-color: #090F22;
+}
