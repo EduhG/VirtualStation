@@ -3,7 +3,7 @@ from forms import SigninForm
 from . import auth
 
 
-@auth.route('/auth/signin', methods=['GET', 'POST'])
+@auth.route('/signin', methods=['GET', 'POST'])
 def signin():
     form = SigninForm()
 
