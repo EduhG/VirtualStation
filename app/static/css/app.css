@@ -27,3 +27,14 @@
     background-position: center;
     background-size: cover;
 }
+
+.header,
+main,
+footer {
+    padding-left: 240px !important;
+}
+
+nav .container {
+    padding-left: 2000px !important;
+    margin: 0 !important;
+}
