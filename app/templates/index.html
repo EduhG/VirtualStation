@@ -10,6 +10,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../static/plugins/materialize/css/materialize.min.css">
+
     <link rel="stylesheet" href="../static/css/app.css">
 
     <style type="text/css">
@@ -46,26 +50,101 @@
 <body class="white">
     <div class="row">
 
-        <div class="header">
+        <div class="header1">
             <div class="header-container">
                 <div class="row">
-                    <nav class="">
+                    <ul id="dropdown1" class="dropdown-content">
+                        <li style="width: 200px !important;"><a href="#!">New Record</a></li>
+                        <li><a href="#!">Search Record</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#!">List Records</a></li>
+                    </ul>
+
+                    <nav>
                         <div class="nav-wrapper">
+
                             <a href="#" class="brand-logo" style="padding-left: 20px">Virtual Station</a>
 
-                            <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+
+                            <ul class="right hide-on-med-and-down">
+
+                                <li style="height: 100% !important; position: relative !important">
+                                    <!--<form style="height: 100% !important;">
+                                        <div class="input-field" style="height: 100% !important; position: absolute !important">
+                                            <input id="search" type="search" required>
+                                            <label for="search"><i class="material-icons">search</i></label>
+                                            <i class="material-icons">close</i>
+                                        </div>
+                                    </form>-->
+                                </li>
+
                                 {% if current_user.is_authenticated %}
-                                    <li><a href="{{ url_for('auth.signout') }}">Sign Out</a></li>
+                                <li style="width: 200px !important;"><a class="dropdown-button" href="#!" data-activates="dropdown1">Occurrence Book<i class="material-icons right">arrow_drop_down</i></a></li>
+                                <li><a href="{{ url_for('auth.signout') }}">Sign Out</a></li>
                                 {% else %}
-                                    <li><a href="{{ url_for('auth.signin') }}">Sign In</a></li>
+                                <li><a href="{{ url_for('auth.signin') }}">Sign In</a></li>
                                 {% endif %}
+
                             </ul>
                         </div>
                     </nav>
+
                 </div>
 
                 <div class="row">
                     <h1>Hello, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+                </div>
+
+                <div class="row">
+                    <div class="col s4">
+                        <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="images/office.jpg">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+                                <p><a href="#">This is a link</a></p>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s4">
+                        <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="images/office.jpg">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+                                <p><a href="#">This is a link</a></p>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s4">
+                        <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="images/office.jpg">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+                                <p><a href="#">This is a link</a></p>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -80,6 +159,8 @@
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!--materialize js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+
+    <script src="../../static/plugins/materialize/js/materialize.min.js"></script>
 
 </body>
 

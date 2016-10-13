@@ -9,11 +9,21 @@
 
 .header-container {
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.0);
 }
 
 .header-container nav {
-    background-color: #090F22;
+    background-color: #00695c;
     /*background: rgba(0, 0, 0, 0.6);
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);*/
+}
+
+.header1 {
+    height: 100vh;
+    position: relative;
+    background: url(../images/dawn-190055.jpg);
+    background: #eee;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
