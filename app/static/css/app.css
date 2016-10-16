@@ -28,6 +28,11 @@
     background-size: cover;
 }
 
+.white-text p {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 .header,
 main,
 footer {
