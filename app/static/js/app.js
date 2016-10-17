@@ -8,6 +8,7 @@ $('.button-collapse').sideNav({
 });
 $('.collapsible').collapsible();
 
+
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'line',
@@ -47,7 +48,51 @@ var myChart = new Chart(ctx, {
             }]
         },
         title: {
-            display: true,
+            display: false,
+            text: 'Custom Chart Title'
+        }
+    }
+});
+
+var newCasesPie = document.getElementById("newCasesPie");
+var myPieChart = new Chart(newCasesPie, {
+    type: 'doughnut',
+    data: {
+        labels: [
+        "Red",
+        "Blue",
+        "Yellow"
+    ],
+        datasets: [
+            {
+                data: [300, 50, 100],
+                backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+                hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ]
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    display: false
+                }
+        }],
+            yAxes: [{
+                gridLines: {
+                    display: false
+                }
+        }]
+        },
+        title: {
+            display: false,
             text: 'Custom Chart Title'
         }
     }

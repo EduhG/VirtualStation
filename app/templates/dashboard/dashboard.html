@@ -158,7 +158,9 @@
                                 <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 15% <span class="green-text text-lighten-5">from last month</span>
                                 </p>
                             </div>
-                            <div class="col s12 m6 l6"></div>
+                            <div class="col s12 m6 l6 center-align">
+                                <canvas id="newCasesPie" width="250" height="125"></canvas>
+                            </div>
                         </div>
 
                     </div>
@@ -182,7 +184,10 @@
                                 <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-down"></i> 3% <span class="deep-purple-text text-lighten-5">from last month</span>
                                 </p>
                             </div>
-                            <div class="col s12 m6 l6"></div>
+                            <div class="col s12 m6 l6">
+                                <canvas id="closedCasesPie" width="250" height="125"></canvas>
+
+                            </div>
                         </div>
 
                     </div>
@@ -205,7 +210,7 @@
     </div>
 
     <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="../../static/plugins/materialize/js/materialize.min.js"></script>
 
     <script type="text/javascript" src="../../static/plugins/chartjs/chart.min.js"></script>
