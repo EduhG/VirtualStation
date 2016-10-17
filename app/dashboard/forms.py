@@ -7,5 +7,5 @@ class NewCaseForm(Form):
     password = PasswordField('Password', [validators.DataRequired("Please enter a password.")])
     remember_me = BooleanField('remember_me', default=False)
 
-    submit = SubmitField("Sign In")
+    submit = SubmitField("Save Details")
     # id_method, id_number, first_name, other_names, gender, phone_number, email, reg_date, complaint_type, description
