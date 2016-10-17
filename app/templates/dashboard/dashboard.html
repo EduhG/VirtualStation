@@ -7,7 +7,7 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="../../static/plugins/materialize/css/materialize.min.css" media="screen,projection" />
 
-    <!--<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,17 +23,15 @@
             <li><a href="#!">List Records</a></li>
         </ul>
 
-        <nav class="brown darken-1 z-depth-0">
+        <nav class="teal z-depth-0" style="position: relative !important; z-index:10000 !important">
             <div class="nav-wrapper" style="padding-left:30px">
                 <a id="logo-container" href="#" class="brand-logo">Virtual Station</a>
                 <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#">Patients</a></li>
-                    <li><a href="#">Patients History</a></li>
-                    <li style="width: 200px !important;"><a class="dropdown-button" href="#!" data-activates="dropdown1">Occurrence Book<i class="material-icons right"><!--arrow_drop_down--></i></a></li>
+                    <li style="width: 200px !important;"><a class="dropdown-button" href="#!" data-activates="dropdown1">Occurrence Book<i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
-                <ul id="slide-out" class="side-nav fixed" style="width: 280px; color: #fff !important; margin-top: 64px">
-                    <li>
+                <ul id="slide-out" class="side-nav fixed" style="width: 280px; color: #fff !important; margin-top: 0px !important">
+                    <li class="teal">
                         <div class="userView">
                             <img class="background" src="images/office.jpg">
                             <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
@@ -42,11 +40,11 @@
                         </div>
                     </li>
 
-                    <li class="bold"><a href="#" class="waves-effect waves-teal" style="color:white">Patients</a></li>
-                    <li class="bold"><a href="#">Patients History</a></li>
+                    <li class="bold"><a href="#" class="waves-effect waves-teal" style="">Reported Cases</a></li>
+                    <li class="bold"><a href="#">Case History</a></li>
                     <li><a href="#">Bookings</a></li>
                     <li><a href="#">Notes</a></li>
-                    <li><a href="#">Add Patient</a></li>
+                    <li><a href="#">Add Case</a></li>
                 </ul>
             </div>
         </nav>
@@ -60,27 +58,28 @@
                     <div class="card-content" style="height: 430px; padding:0">
                         <ul id="task-card" class="collection with-header">
                             <li class="collection-header cyan">
-                                <h4 class="task-card-title">My Task</h4>
-                                <p class="task-card-date">March 26, 2015</p>
+                                <h4 class="task-card-title">Recent Updates</h4>
+                                <p class="task-card-date">October 17, 2016</p>
                             </li>
-                            <li class="collection-item dismissable">
+                            <li class="collection-item dismissable" style="padding: 20px !important">
                                 <label for="task1">Create Mobile App UI. <a href="#" class="secondary-content"><span class="ultra-small">Today</span></a>
                                 </label>
-                                <span class="task-cat teal">Mobile App</span>
                             </li>
-                            <li class="collection-item dismissable">
+                            <li class="collection-item dismissable" style="padding: 20px !important">
                                 <label for="task2">Check the new API standerds. <a href="#" class="secondary-content"><span class="ultra-small">Monday</span></a>
                                 </label>
-                                <span class="task-cat purple">Web API</span>
                             </li>
-                            <li class="collection-item dismissable">
+                            <li class="collection-item dismissable" style="padding: 20px !important">
                                 <label for="task3">Check the new Mockup of ABC. <a href="#" class="secondary-content"><span class="ultra-small">Wednesday</span></a>
                                 </label>
-                                <span class="task-cat pink">Mockup</span>
                             </li>
-                            <li class="collection-item dismissable">
-                                <label for="task4">I did it !</label>
-                                <span class="task-cat cyan">Mobile App</span>
+                            <li class="collection-item dismissable" style="padding: 20px !important">
+                                <label for="task3">Check the new Mockup of ABC. <a href="#" class="secondary-content"><span class="ultra-small">Wednesday</span></a>
+                                </label>
+                            </li>
+                            <li class="collection-item dismissable" style="padding: 20px !important">
+                                <label for="task3">Check the new Mockup of ABC. <a href="#" class="secondary-content"><span class="ultra-small">Wednesday</span></a>
+                                </label>
                             </li>
                         </ul>
                     </div>
