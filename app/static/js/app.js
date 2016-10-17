@@ -9,8 +9,37 @@ $('.button-collapse').sideNav({
 $('.collapsible').collapsible();
 
 
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
+var config = {
+    type: 'line',
+    data: {
+        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        datasets: [{
+            label: "My First dataset",
+            data: [65, 0, 80, 81, 56, 85, 40],
+            fill: false
+    }]
+    },
+    options: {
+        legend: {
+            display: false
+        },
+        tooltips: {
+            callbacks: {
+                label: function (tooltipItem) {
+                    console.log(tooltipItem)
+                    return tooltipItem.yLabel;
+                }
+            }
+        }
+    }
+};
+
+var ctx = document.getElementById("myChart").getContext("2d");
+new Chart(ctx, config);
+
+
+/*var ctx = document.getElementById("myChart");
+/*var myChart = new Chart(ctx, {
     type: 'line',
     data: {
         labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -50,9 +79,12 @@ var myChart = new Chart(ctx, {
         title: {
             display: false,
             text: 'Custom Chart Title'
+        },
+        legend: {
+            display: false
         }
     }
-});
+});*/
 
 var newCasesPie = document.getElementById("newCasesPie");
 var myPieChart = new Chart(newCasesPie, {
@@ -94,6 +126,9 @@ var myPieChart = new Chart(newCasesPie, {
         title: {
             display: false,
             text: 'Custom Chart Title'
+        },
+        legend: {
+            display: false
         }
     }
 });
