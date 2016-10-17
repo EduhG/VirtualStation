@@ -42,9 +42,9 @@
                         </div>
                     </li>
 
-                    <li class="bold active"><a href="../../templates/dashboard/dashboard.html" class="waves-effect waves-teal" style="">Dashboard</a></li>
+                    <li class="bold"><a href="../../templates/dashboard/dashboard.html" class="waves-effect waves-teal" style="">Dashboard</a></li>
                     <li class="bold"><a href="../../templates/dashboard/new-case.html">Open New Case</a></li>
-                    <li class=""><a href="../../templates/dashboard/list-cases.html">List Open Cases</a></li>
+                    <li class="active"><a href="../../templates/dashboard/list-cases.html">List Open Cases</a></li>
                     <li class=""><a href="../../templates/dashboard/notes.html">Notes</a></li>
                 </ul>
             </div>
@@ -54,35 +54,36 @@
 
     <div class="row" style="margin: 0px; margin-left: 280px; padding: 10px">
         <div class="row" style="margin:0">
-            <div class="col l4 m4 s12">
+            <div class="col l12 m12 s12">
                 <div class="card">
                     <div class="card-content" style="height: 430px; padding:0">
-                        <ul id="task-card" class="collection with-header">
-                            <li class="collection-header teal">
-                                <h4 class="task-card-title white-text">Recent Updates</h4>
-                                <p class="task-card-date white-text">October 17, 2016</p>
-                            </li>
-                            <li class="collection-item dismissable" style="padding: 20px !important">
-                                <label for="task1">Create Mobile App UI. <a href="#" class="secondary-content"><span class="ultra-small">Today</span></a>
-                                </label>
-                            </li>
-                            <li class="collection-item dismissable" style="padding: 20px !important">
-                                <label for="task2">Check the new API standerds. <a href="#" class="secondary-content"><span class="ultra-small">Monday</span></a>
-                                </label>
-                            </li>
-                            <li class="collection-item dismissable" style="padding: 20px !important">
-                                <label for="task3">Check the new Mockup of ABC. <a href="#" class="secondary-content"><span class="ultra-small">Wednesday</span></a>
-                                </label>
-                            </li>
-                            <li class="collection-item dismissable" style="padding: 20px !important">
-                                <label for="task3">Check the new Mockup of ABC. <a href="#" class="secondary-content"><span class="ultra-small">Wednesday</span></a>
-                                </label>
-                            </li>
-                            <li class="collection-item dismissable" style="padding: 20px !important">
-                                <label for="task3">Check the new Mockup of ABC. <a href="#" class="secondary-content"><span class="ultra-small">Wednesday</span></a>
-                                </label>
-                            </li>
-                        </ul>
+                        <table class="bordered">
+                            <thead class="teal white-text">
+                                <tr>
+                                    <th data-field="id">Name</th>
+                                    <th data-field="name">Item Name</th>
+                                    <th data-field="price">Item Price</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>Alvin</td>
+                                    <td>Eclair</td>
+                                    <td>$0.87</td>
+                                </tr>
+                                <tr>
+                                    <td>Alan</td>
+                                    <td>Jellybean</td>
+                                    <td>$3.76</td>
+                                </tr>
+                                <tr>
+                                    <td>Jonathan</td>
+                                    <td>Lollipop</td>
+                                    <td>$7.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                     <div class="card-reveal">
@@ -127,85 +128,9 @@
                 </div>
             </div>
 
-            <div class="col l8 m8 s12">
-                <div class="row" style="margin: 0">
-                    <div class="card">
-                        <div class="card-content" style="height: auto">
-
-                            <div class="chartdata">
-                                <canvas id="myChart" width="400" height="150"></canvas>
-                            </div>
-
-                        </div>
-                        <div class="card-action">
-                            <a href="#">This is a link</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row" style="margin:0">
-            <div class="col s12 m6 l6">
-                <div class="card">
-                    <div class="card-content" style="padding: 0">
-                        <div class="row" style="padding: 0; margin: 0">
-                            <div class="col s12 m6 l6 green lighten-1 white-text center-align" style="padding: 20px">
-                                <p class="card-stats-title"><i class="mdi-social-group-add"></i> New Reported Cases</p>
-                                <h4 class="card-stats-number">56</h4>
-                                <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 15% <span class="green-text text-lighten-5">from last month</span>
-                                </p>
-                            </div>
-                            <div class="col s12 m6 l6 center-align">
-                                <canvas id="newCasesPie" width="250" height="125"></canvas>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-
-
-                    <!--<div class="card-action green darken-2">
-                        <a href="#">This is a link</a>
-                    </div>-->
-                </div>
-            </div>
-
-            <div class="col s12 m6 l6">
-                <div class="card">
-                    <div class="card-content" style="padding: 0">
-                        <div class="row" style="padding: 0; margin: 0">
-                            <div class="col s12 m6 l6 pink lighten-1 white-text center-align" style="padding: 20px">
-                                <p class="card-stats-title"><i class="mdi-editor-insert-drive-file"></i> Closed Cases</p>
-                                <h4 class="card-stats-number">18</h4>
-                                <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-down"></i> 3% <span class="deep-purple-text text-lighten-5">from last month</span>
-                                </p>
-                            </div>
-                            <div class="col s12 m6 l6">
-                                <canvas id="closedCasesPie" width="250" height="125"></canvas>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <!--<div class="card-action pink darken-2">
-                        <a href="#">This is a link</a>
-                    </div>-->
-                </div>
-            </div>
 
         </div>
 
-        <div class="row" style="margin:0">
-            <div class="col l6 m6 s12">
-
-            </div>
-            <div class="col l6 m6 s12">
-
-            </div>
-        </div>
     </div>
 
     <!--Import jQuery before materialize.js-->
