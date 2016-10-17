@@ -48,7 +48,7 @@
 </head>
 
 <body class="white">
-    <div class="row">
+    <div class="row" style="margin: 0px !important;">
 
         <div class="header1">
             <div class="header-container">
@@ -60,7 +60,7 @@
                         <li><a href="#!">List Records</a></li>
                     </ul>
 
-                    <nav>
+                    <nav class="brown darken-3">
                         <div class="nav-wrapper">
 
                             <a href="#" class="brand-logo" style="padding-left: 20px">Virtual Station</a>
@@ -96,7 +96,7 @@
                     <h1>Hello, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
                 </div>
 
-                <div class="row">
+                <div class="row" style="margin: 0px !important;">
                     <div class="col s4">
                         <div class="card">
                             <div class="card-image waves-effect waves-block waves-light">
@@ -150,27 +150,8 @@
 
         </div>
 
-        <div class="row teal" style="height: 1000px !important;">
-            <div class="col s8">
-                dsdsds
-            </div>
-
-            <div class="col s4">
-                dsdsds
-            </div>
-        </div>
-
     </div>
 
-    <div class="row teal" style="height: 1000px !important;">
-        <div class="col s8">
-            dsdsds
-        </div>
-
-        <div class="col s4">
-            dsdsds
-        </div>
-    </div>
 
     <!-- ================================================
     Scripts
