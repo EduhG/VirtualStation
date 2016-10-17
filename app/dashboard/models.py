@@ -28,3 +28,13 @@ class ReportedCase(db.Model):
         self.reg_date = reg_date
         self.complaint_type = complaint_type
         self.description = description
+
+
+class ComplaintTypes(db.Model):
+    __tablename__ = 'complaint_types'
+
+    id = db.Column(db.Integer, primary_key=True)
+    complaint = db.Column(db.String(100), unique=True)
+
+    def __init__(self, complaint):
+        self.id_method = complaint
