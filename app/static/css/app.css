@@ -51,3 +51,8 @@ nav .container {
 .collection-item {
     padding: 20px !important
 }
+
+.profile-bg {
+    background: url(../images/profile-bg.png);
+    background-position: center;
+}
