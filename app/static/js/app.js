@@ -15,11 +15,19 @@ var config = {
         labels: ["January", "February", "March", "April", "May", "June", "July"],
         datasets: [{
             label: "My First dataset",
-            data: [65, 0, 80, 81, 56, 85, 40],
-            fill: false
+            data: [65, 10, 80, 81, 56, 85, 40],
+            fill: false,
+            borderColor: "rgba(75,192,192,1)"
     }]
     },
     options: {
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    display: false
+                }
+            }]
+        },
         legend: {
             display: false
         },
@@ -88,6 +96,53 @@ new Chart(ctx, config);
 
 var newCasesPie = document.getElementById("newCasesPie");
 var myPieChart = new Chart(newCasesPie, {
+    type: 'doughnut',
+    data: {
+        labels: [
+        "Red",
+        "Blue",
+        "Yellow"
+    ],
+        datasets: [
+            {
+                data: [300, 50, 100],
+                backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+                hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ]
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    display: false
+                }
+        }],
+            yAxes: [{
+                gridLines: {
+                    display: false
+                }
+        }]
+        },
+        title: {
+            display: false,
+            text: 'Custom Chart Title'
+        },
+        legend: {
+            display: false
+        }
+    }
+});
+
+var closedCasesPie = document.getElementById("closedCasesPie");
+var myPieChart = new Chart(closedCasesPie, {
     type: 'doughnut',
     data: {
         labels: [
