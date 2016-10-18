@@ -84,6 +84,25 @@ def reported_cases_chart():
     return response
 
 
+@dashboard.route('/total_reported_cases_annually')
+def total_reported_cases_annually():
+    comps = []
+
+    for case in db.session.query(ReportedCase).all():
+        complaints = {}
+
+        count = db.session.query(ReportedCase).filter_by(complaint_type=complaint.complaint).count()
+        print complaint.complaint, " => ", count
+        complaints["complaint"] = complaint.complaint
+        complaints["total_count"] = count
+
+        comps.append(complaints)
+
+    response = jsonify(comps)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+
 def current_date():
     return '{} {} {}'.format(date.today().strftime("%B"), str(now.day) + ',', now.year)
 
@@ -109,13 +128,15 @@ def newcase():
         phone_number = request.form['phone_number']
         email = request.form['email']
         reg_date = request.form['reg_date']
+        month = date.today().month
+        year = date.today().year
         complaint_type = request.form['complaint_type']
         description = request.form['description']
 
         print reg_date.split()
 
         newstudent = ReportedCase(id_method, id_number, first_name, other_names, gender,
-                                  phone_number, email, reg_date, complaint_type, description)
+                                  phone_number, email, reg_date, month, year, complaint_type, description)
         db.session.add(newstudent)
         db.session.commit()
 

@@ -32,7 +32,7 @@ var config = {
         datasets: [{
             label: "My First dataset",
             data: [65, 10, 80, 81, 56, 85, 40],
-            fill: false,
+            fill: true,
             borderColor: "rgba(75,192,192,1)"
     }]
     },
@@ -175,6 +175,7 @@ $.ajax({
 
         var chartdata = {
             labels: player,
+
             datasets : [
                 {
                     label: 'Player Score',
@@ -191,7 +192,28 @@ $.ajax({
 
         var doughnutChart = new Chart(ctx, {
             type: 'doughnut',
-            data: chartdata
+            data: chartdata,
+            options: {
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            display: false
+                        }
+                }],
+                    yAxes: [{
+                        gridLines: {
+                            display: false
+                        }
+                }]
+                },
+                title: {
+                    display: false,
+                    text: 'Custom Chart Title'
+                },
+                legend: {
+                    display: false
+                }
+            }
         });
     },
     error: function(data) {
@@ -261,16 +283,34 @@ $.ajax({
             console.log(data[i].total_count)
         }
 
+        var bg_colors = randomColor({luminosity: 'dark', count: player.length});
+        console.log(bg_colors)
+
         var chartdata = {
             labels: player,
-            datasets : [
+            /*datasets : [
                 {
                     label: 'Player Score',
-                    backgroundColor: 'rgba(200, 200, 200, 0.75)',
-                    borderColor: 'rgba(200, 200, 200, 0.75)',
+                    backgroundColor: bg_colors,
+                    borderColor: bg_colors,
                     hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
                     hoverBorderColor: 'rgba(200, 200, 200, 1)',
                     data: score
+                }
+            ]*/
+            datasets: [
+                {
+                    type: 'bar',
+                    label: 'Bar Chart',
+                    data: score,
+                    backgroundColor: bg_colors
+                },
+                {
+                    type: 'line',
+                    label: 'Line Chart',
+                    data: score,
+                    lineTension: 0.5,
+                    borderColor: "rgba(75,192,192,1)"
                 }
             ]
         };
@@ -287,5 +327,3 @@ $.ajax({
     }
 });
 
-
-console.log(randomColor({luminosity: 'dark', count: 27}));
