@@ -204,6 +204,43 @@ var myPieChart = new Chart(closedCasesPie, {
     }
 });
 
-$('button').click(function () {
-    alert()
-})
+$.ajax({
+    url: "/dashboard/reported_cases_chart",
+    method: "GET",
+    success: function(data) {
+        console.log(data);
+        var player = [];
+        var score = [];
+
+        for(var i in data) {
+            player.push("Player " + data[i].complaint);
+            score.push(data[i].total_count);
+            console.log(data[i].complaint)
+            console.log(data[i].total_count)
+        }
+
+        var chartdata = {
+            labels: player,
+            datasets : [
+                {
+                    label: 'Player Score',
+                    backgroundColor: 'rgba(200, 200, 200, 0.75)',
+                    borderColor: 'rgba(200, 200, 200, 0.75)',
+                    hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
+                    hoverBorderColor: 'rgba(200, 200, 200, 1)',
+                    data: score
+                }
+            ]
+        };
+
+        var ctx = $("#mycanvas1");
+
+        var barGraph = new Chart(ctx, {
+            type: 'bar',
+            data: chartdata
+        });
+    },
+    error: function(data) {
+        console.log(data);
+    }
+});

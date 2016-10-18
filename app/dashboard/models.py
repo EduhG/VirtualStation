@@ -1,4 +1,5 @@
 from .. import db
+from datetime import datetime
 
 
 class ReportedCase(db.Model):
@@ -13,6 +14,7 @@ class ReportedCase(db.Model):
     phone_number = db.Column(db.String(20))
     email = db.Column(db.String(64), unique=True)
     reg_date = db.Column(db.String(20))
+    reported_date = db.Column(db.Date(), default=datetime.now().date())
     complaint_type = db.Column(db.String(100))
     description = db.Column(db.String(1000))
 

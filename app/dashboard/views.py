@@ -1,16 +1,98 @@
-from flask import render_template, request, url_for, redirect, flash
+from flask import render_template, request, url_for, redirect, flash, jsonify
 from flask_login import login_required
-from sqlalchemy import func
+from datetime import date, datetime, timedelta
+import calendar
 from forms import NewCaseForm
 from .. import db
 from .models import ReportedCase, ComplaintTypes
 from . import dashboard
 
+now = datetime.now()
+
+
+def a_day_in_previous_month(dt):
+    return datetime(dt.year, dt.month, 1) - timedelta(days=1)
+
+
+def last_day_of_month():
+    c_date = date.today()
+    start_date = datetime(c_date.year, c_date.month, 1)
+    end_date = datetime(c_date.year, c_date.month, calendar.mdays[c_date.month])
+    print start_date, end_date
+
+
+def first_day_of_month(dt):
+    return date(dt.year, dt.month, 1)
+
+
+def get_complaint_type_count():
+    complaints = {}
+
+    for complaint in db.session.query(ComplaintTypes).all():
+        count = db.session.query(ReportedCase).filter_by(complaint_type=complaint.complaint).count()
+        complaints[complaint.complaint] = count
+
+    return complaints
+
+
+def get_reported_cases():
+    reported_cases_summary = {}
+
+    dt = datetime.strptime(datetime.now().date().strftime('%Y-%m-%d'), '%Y-%m-%d')
+    c_date = date.today()
+    start_date = datetime(c_date.year, c_date.month, 1)
+    end_date = datetime(c_date.year, c_date.month, calendar.mdays[c_date.month])
+
+    current_month_count = db.session.query(ReportedCase).filter(
+        ReportedCase.reported_date.between(start_date, end_date)).count()
+
+    reported_cases_summary["current_month"] = current_month_count
+
+    last_month_count = db.session.query(ReportedCase).filter(
+        ReportedCase.reported_date.between(
+            first_day_of_month(a_day_in_previous_month(dt)), a_day_in_previous_month(dt))).count()
+
+    reported_cases_summary["last_month"] = last_month_count
+
+    diff = current_month_count - last_month_count
+    total = current_month_count + last_month_count
+    change = (diff * 100) / total
+
+    reported_cases_summary["change"] = change
+
+    print reported_cases_summary
+
+    return reported_cases_summary
+
+
+@dashboard.route('/reported_cases_chart')
+def reported_cases_chart():
+    comps = []
+
+    for complaint in db.session.query(ComplaintTypes).all():
+        complaints = {}
+
+        count = db.session.query(ReportedCase).filter_by(complaint_type=complaint.complaint).count()
+        print complaint.complaint, " => ", count
+        complaints["complaint"] = complaint.complaint
+        complaints["total_count"] = count
+
+        comps.append(complaints)
+
+    response = jsonify(comps)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+
+def current_date():
+    return '{} {} {}'.format(date.today().strftime("%B"), str(now.day) + ',', now.year)
+
 
 @dashboard.route('/')
 @login_required
 def index():
-    return render_template('dashboard/dashboard.html', complaints=get_complaint_type_count())
+    return render_template('dashboard/dashboard.html', complaints=get_complaint_type_count(),
+                           current_date=current_date(), reported_cases=get_reported_cases())
 
 
 @dashboard.route('/newcase', methods=['GET', 'POST'])
@@ -30,6 +112,8 @@ def newcase():
         complaint_type = request.form['complaint_type']
         description = request.form['description']
 
+        print reg_date.split()
+
         newstudent = ReportedCase(id_method, id_number, first_name, other_names, gender,
                                   phone_number, email, reg_date, complaint_type, description)
         db.session.add(newstudent)
@@ -40,12 +124,3 @@ def newcase():
 
     return render_template('dashboard/new-case.html', form=form)
 
-
-def get_complaint_type_count():
-    complaints = {}
-
-    for complaint in db.session.query(ComplaintTypes).all():
-        count = db.session.query(ReportedCase).filter_by(complaint_type=complaint.complaint).count()
-        complaints[complaint.complaint] = count
-
-    return complaints

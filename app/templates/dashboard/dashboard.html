@@ -72,7 +72,7 @@
                         <ul id="task-card" class="collection with-header">
                             <li class="collection-header teal">
                                 <h4 class="task-card-title white-text">Recent Updates</h4>
-                                <p class="task-card-date white-text">October 17, 2016</p>
+                                <p class="task-card-date white-text">{{ current_date }}<!--October 17, 2016--></p>
                             </li>
 
                             {% for k, v in complaints.iteritems() %}
@@ -88,40 +88,12 @@
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
                         <div class="row">
-                            <form class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s6">
-                                        <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                                        <label for="first_name">First Name</label>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input id="last_name" type="text" class="validate">
-                                        <label for="last_name">Last Name</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input disabled value="I am not editable" id="disabled" type="text" class="validate">
-                                        <label for="disabled">Disabled</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="password" type="password" class="validate">
-                                        <label for="password">Password</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="email" type="email" class="validate">
-                                        <label for="email">Email</label>
-                                    </div>
-                                </div>
-                            </form>
+                            <canvas id="mycanvas1"></canvas>
                         </div>
                     </div>
 
                     <div class="card-action" style="padding:20px; padding-bottom:5px">
+                        <!--<span class="card-title activator" style="padding:1px !important"><a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a></span>-->
                         <span class="card-title activator" style="padding:1px !important"><i class="material-icons right">more_vert</i></span>
                     </div>
                 </div>
@@ -153,8 +125,8 @@
                         <div class="row" style="padding: 0; margin: 0">
                             <div class="col s12 m6 l6 green lighten-1 white-text center-align" style="padding: 20px">
                                 <p class="card-stats-title"><i class="mdi-social-group-add"></i> New Reported Cases</p>
-                                <h4 class="card-stats-number">56</h4>
-                                <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 15% <span class="green-text text-lighten-5">from last month</span>
+                                <h4 class="card-stats-number">{{ reported_cases["current_month"] }}</h4>
+                                <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> {{ reported_cases["change"] }}% <span class="green-text text-lighten-5">from last month</span>
                                 </p>
                             </div>
                             <div class="col s12 m6 l6 center-align">
