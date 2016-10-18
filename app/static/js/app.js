@@ -157,7 +157,49 @@ var myPieChart = new Chart(newCasesPie, {
     }
 });
 
-var closedCasesPie = document.getElementById("closedCasesPie");
+
+$.ajax({
+    url: "/dashboard/reported_cases_chart",
+    method: "GET",
+    success: function(data) {
+        console.log(data);
+        var player = [];
+        var score = [];
+
+        for(var i in data) {
+            player.push("Player " + data[i].complaint);
+            score.push(data[i].total_count);
+        }
+
+        var bg_colors = randomColor({luminosity: 'dark', count: player.length});
+
+        var chartdata = {
+            labels: player,
+            datasets : [
+                {
+                    label: 'Player Score',
+                    backgroundColor: 'rgba(200, 200, 200, 0.75)',
+                    borderColor: 'rgba(200, 200, 200, 0.75)',
+                    data: score,
+                    backgroundColor: bg_colors,
+                    hoverBackgroundColor: bg_colors
+                }
+            ]
+        };
+
+        var ctx = $("#closedCasesPie");
+
+        var doughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: chartdata
+        });
+    },
+    error: function(data) {
+        console.log(data);
+    }
+});
+
+/*var closedCasesPie = document.getElementById("closedCasesPie");
 var myPieChart = new Chart(closedCasesPie, {
     type: 'doughnut',
     data: {
@@ -202,7 +244,7 @@ var myPieChart = new Chart(closedCasesPie, {
             display: false
         }
     }
-});
+});*/
 
 $.ajax({
     url: "/dashboard/reported_cases_chart",
@@ -244,3 +286,6 @@ $.ajax({
         console.log(data);
     }
 });
+
+
+console.log(randomColor({luminosity: 'dark', count: 27}));
