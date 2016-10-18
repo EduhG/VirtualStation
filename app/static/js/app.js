@@ -203,3 +203,7 @@ var myPieChart = new Chart(closedCasesPie, {
         }
     }
 });
+
+$('button').click(function () {
+    alert()
+})

@@ -1,5 +1,5 @@
 from flask import render_template, request, url_for, redirect, flash
-from flask_login import login_required, login_user
+from flask_login import login_required
 from forms import NewCaseForm
 from .. import db
 from .models import ReportedCase
@@ -18,6 +18,7 @@ def newcase():
     form = NewCaseForm()
 
     if form.validate_on_submit():
+        print 'pressed'
         id_method = request.form['id_method']
         id_number = request.form['id_number']
         first_name = request.form['first_name']
@@ -38,4 +39,5 @@ def newcase():
         return redirect(request.args.get('next') or url_for('dashboard.newcase'))
 
     return render_template('dashboard/new-case.html', form=form)
+
 
