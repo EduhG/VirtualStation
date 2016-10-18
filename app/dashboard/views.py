@@ -1,15 +1,16 @@
 from flask import render_template, request, url_for, redirect, flash
 from flask_login import login_required
+from sqlalchemy import func
 from forms import NewCaseForm
 from .. import db
-from .models import ReportedCase
+from .models import ReportedCase, ComplaintTypes
 from . import dashboard
 
 
 @dashboard.route('/')
 @login_required
 def index():
-    return render_template('dashboard/dashboard.html')
+    return render_template('dashboard/dashboard.html', complaints=get_complaint_type_count())
 
 
 @dashboard.route('/newcase', methods=['GET', 'POST'])
@@ -18,7 +19,6 @@ def newcase():
     form = NewCaseForm()
 
     if form.validate_on_submit():
-        print 'pressed'
         id_method = request.form['id_method']
         id_number = request.form['id_number']
         first_name = request.form['first_name']
@@ -41,3 +41,11 @@ def newcase():
     return render_template('dashboard/new-case.html', form=form)
 
 
+def get_complaint_type_count():
+    complaints = {}
+
+    for complaint in db.session.query(ComplaintTypes).all():
+        count = db.session.query(ReportedCase).filter_by(complaint_type=complaint.complaint).count()
+        complaints[complaint.complaint] = count
+
+    return complaints
