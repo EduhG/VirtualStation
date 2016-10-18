@@ -74,26 +74,14 @@
                                 <h4 class="task-card-title white-text">Recent Updates</h4>
                                 <p class="task-card-date white-text">October 17, 2016</p>
                             </li>
-                            <li class="collection-item dismissable" style="padding: 20px !important">
-                                <label for="task1">Create Mobile App UI. <a href="#" class="secondary-content"><span class="ultra-small">Today</span></a>
+
+                            {% for k, v in complaints.iteritems() %}
+                                <li class="collection-item dismissable" style="padding: 20px !important">
+                                    <label>{{ k }}. <a href="#" class="secondary-content"><span class="ultra-small">{{ v }}</span></a>
                                 </label>
-                            </li>
-                            <li class="collection-item dismissable" style="padding: 20px !important">
-                                <label for="task2">Check the new API standerds. <a href="#" class="secondary-content"><span class="ultra-small">Monday</span></a>
-                                </label>
-                            </li>
-                            <li class="collection-item dismissable" style="padding: 20px !important">
-                                <label for="task3">Check the new Mockup of ABC. <a href="#" class="secondary-content"><span class="ultra-small">Wednesday</span></a>
-                                </label>
-                            </li>
-                            <li class="collection-item dismissable" style="padding: 20px !important">
-                                <label for="task3">Check the new Mockup of ABC. <a href="#" class="secondary-content"><span class="ultra-small">Wednesday</span></a>
-                                </label>
-                            </li>
-                            <li class="collection-item dismissable" style="padding: 20px !important">
-                                <label for="task3">Check the new Mockup of ABC. <a href="#" class="secondary-content"><span class="ultra-small">Wednesday</span></a>
-                                </label>
-                            </li>
+                                </li>
+                            {% endfor %}
+
                         </ul>
                     </div>
 
