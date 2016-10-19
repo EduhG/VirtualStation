@@ -3,19 +3,14 @@ import calendar
 
 
 def months_days(current_year):
-    month_days = []
-
     first_dates = [first_day(str(current_year) + "-" + str(i + 1) + "-" + str(1)) for i in range(12)]
     last_dates = [datetime(first_date.year, first_date.month, calendar.mdays[first_date.month])
                   for first_date in first_dates]
     year_months = [last_date.strftime("%B") for last_date in last_dates]
 
-    monthss = [{year_months[i]: {"first_date": first_dates[i], "last_date": last_dates[i]}} for i in range(len(year_months))]
+    months = [{year_months[i]: {"first_date": first_dates[i], "last_date": last_dates[i]}} for i in range(len(year_months))]
 
-    for date1 in last_dates:
-        print date1
-
-    return monthss
+    return months
 
 
 def first_day(str_date):

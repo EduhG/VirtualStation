@@ -2,6 +2,8 @@ from flask import render_template, request, url_for, redirect, flash, jsonify
 from flask_login import login_required
 from datetime import date, datetime, timedelta
 import calendar
+from collections import OrderedDict
+from ..utils.custom_calendar import months_days
 from forms import NewCaseForm
 from .. import db
 from .models import ReportedCase, ComplaintTypes
@@ -86,19 +88,28 @@ def reported_cases_chart():
 
 @dashboard.route('/total_reported_cases_annually')
 def total_reported_cases_annually():
-    comps = []
+    comps = months_days(date.today().year)
 
-    for case in db.session.query(ReportedCase).all():
-        complaints = {}
+    monthly = []
 
-        count = db.session.query(ReportedCase).filter_by(complaint_type=complaint.complaint).count()
-        print complaint.complaint, " => ", count
-        complaints["complaint"] = complaint.complaint
-        complaints["total_count"] = count
+    for comp in comps:
+        for key, value in comp.iteritems():
+            year_start = value['first_date']
+            year_end = value['last_date']
 
-        comps.append(complaints)
+            details = {}
 
-    response = jsonify(comps)
+            monthly_count = db.session.query(ReportedCase).filter(
+                ReportedCase.reported_date.between(year_start, year_end)).count()
+
+            details['calendar_month'] = key
+            details['month_count'] = monthly_count
+
+            monthly.append(details)
+
+    print monthly
+
+    response = jsonify(monthly)
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
