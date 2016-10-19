@@ -8,13 +8,14 @@ def months_days(current_year):
     first_dates = [first_day(str(current_year) + "-" + str(i + 1) + "-" + str(1)) for i in range(12)]
     last_dates = [datetime(first_date.year, first_date.month, calendar.mdays[first_date.month])
                   for first_date in first_dates]
-    months = ['January', 'February', 'March', 'April', 'May', 'June',
-              'July', 'August', 'September', 'October', 'November', 'December']
+    year_months = [last_date.strftime("%B") for last_date in last_dates]
+
+    monthss = [{year_months[i]: {"first_date": first_dates[i], "last_date": last_dates[i]}} for i in range(len(year_months))]
 
     for date1 in last_dates:
         print date1
 
-    return month_days
+    return monthss
 
 
 def first_day(str_date):
