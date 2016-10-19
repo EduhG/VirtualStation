@@ -52,11 +52,11 @@
                     <li class="divider" style="margin:0"></li>
                     <li class="bold"><a href="{{ url_for('dashboard.newcase') }}">Open New Case</a></li>
                     <li class="divider" style="margin:0"></li>
-                    <li class=""><a href="../../templates/dashboard/list-cases.html">List Open Cases</a></li>
+                    <li class=""><a href="{{ url_for('dashboard.list_cases') }}">List Open Cases</a></li>
                     <li class="divider" style="margin:0"></li>
-                    <li class=""><a href="../../templates/dashboard/notes.html">Notes</a></li>
+                    <li class=""><a href="{{ url_for('dashboard.notes') }} ">Notes</a></li>
                     <li class="divider" style="margin:0"></li>
-                    <li class=""><a href="../../templates/dashboard/notes.html">Administrator</a></li>
+                    <li class=""><a href="{{ url_for('dashboard.administrator') }} ">Administrator</a></li>
                     <li class="divider" style="margin:0"></li>
                 </ul>
             </div>

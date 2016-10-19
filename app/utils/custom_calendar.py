@@ -17,6 +17,11 @@ def first_day(str_date):
     return datetime.strptime(str_date, '%Y-%m-%d').date()
 
 
+def str_to_date(str_date):
+    new_string = str_date.replace(' ', '-').replace(',', '')
+    return datetime.strptime(new_string, '%d-%B-%Y')
+
+
 def last_day_of_previous_month(dt):
     return datetime(dt.year, dt.month, 1) - timedelta(days=1)
 
@@ -34,3 +39,4 @@ def first_day_of_current_month(dt):
 
 if __name__ == "__main__":
     print months_days(2016)
+    print str_to_date('10 October, 2016')

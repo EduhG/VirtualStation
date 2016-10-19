@@ -2,8 +2,7 @@ from flask import render_template, request, url_for, redirect, flash, jsonify
 from flask_login import login_required
 from datetime import date, datetime, timedelta
 import calendar
-from collections import OrderedDict
-from ..utils.custom_calendar import months_days
+from ..utils.custom_calendar import months_days, str_to_date
 from forms import NewCaseForm
 from .. import db
 from .models import ReportedCase, ComplaintTypes
@@ -58,7 +57,10 @@ def get_reported_cases():
 
     diff = current_month_count - last_month_count
     total = current_month_count + last_month_count
-    change = (diff * 100) / total
+    if diff > 0:
+        change = (diff * 100) / total
+    else:
+        change = 0
 
     reported_cases_summary["change"] = change
 
@@ -138,16 +140,14 @@ def newcase():
         gender = request.form['gender']
         phone_number = request.form['phone_number']
         email = request.form['email']
-        reg_date = request.form['reg_date']
-        month = date.today().month
-        year = date.today().year
+        reg_date = str_to_date(request.form['reg_date'])
         complaint_type = request.form['complaint_type']
         description = request.form['description']
 
-        print reg_date.split()
+        #print reg_date.split()
 
         newstudent = ReportedCase(id_method, id_number, first_name, other_names, gender,
-                                  phone_number, email, reg_date, month, year, complaint_type, description)
+                                  phone_number, email, reg_date, complaint_type, description)
         db.session.add(newstudent)
         db.session.commit()
 
@@ -156,3 +156,20 @@ def newcase():
 
     return render_template('dashboard/new-case.html', form=form)
 
+
+@dashboard.route('/list_cases')
+@login_required
+def list_cases():
+    return render_template('dashboard/list-cases.html')
+
+
+@dashboard.route('/notes')
+@login_required
+def notes():
+    return render_template('dashboard/list-cases.html')
+
+
+@dashboard.route('/administrator')
+@login_required
+def administrator():
+    return render_template('dashboard/list-cases.html')
