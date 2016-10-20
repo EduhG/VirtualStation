@@ -112,6 +112,7 @@
 
                         <div class="row">
                             <form class="col s12" action="" method="POST">
+                                {{ form.hidden_tag() }}
 
                                 <div>
                                     <div class="row" style="margin:0">
@@ -144,6 +145,19 @@
                                             {% for message in form.add_notes.errors %}
                                                 <div class="center-align, error" id="add_notesHelpText">{{ message }}</div>
                                             {% endfor %}
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col s12 right-align" style="padding: 0px;">
+
+                                            <div class="divider"></div>
+                                            <div style="padding: 10px;">
+                                                <a class="waves-effect waves-light btn-large">Cancel</a>
+                                                <!--<a class="waves-effect waves-light btn-large">Save Details</a>-->
+                                                {{ form.submit(class_="waves-effect waves-light btn-large") }}
+                                            </div>
+
                                         </div>
                                     </div>
 

@@ -21,7 +21,8 @@ class NewCaseForm(Form):
 
 class CaseNotesForm(Form):
     add_search_id = StringField("Email", [validators.DataRequired("Please enter Ref Id to search.")])
-    add_notes = TextAreaField('Description', [validators.DataRequired("Please enter notes to update.")])
+    add_notes = TextAreaField('Description', [validators.DataRequired("Please enter notes to update."),
+                                              validators.Length(10, 1000)])
 
     submit = SubmitField("Save Notes")
 
@@ -29,13 +30,12 @@ class CaseNotesForm(Form):
         Form.__init__(self, *args, **kwargs)
 
     def validate(self):
-        if not Form.validate(self):
-            return False
 
         ref_id = ReportedCase.query.filter_by(id=self.add_search_id.data).first()
+        print 'ref-id', ref_id
 
-        if ref_id:
+        if ref_id and len(self.add_notes.data) > 10:
             return True
         else:
-            self.add_search_id.errors.append("Ref Number not found")
+            #self.add_search_id.errors.append("Ref Number not found")
             return False

@@ -2,6 +2,7 @@ from flask import render_template, request, url_for, redirect, flash, jsonify
 from flask_login import login_required
 from datetime import date, datetime, timedelta
 import calendar
+from flask_login import current_user
 from ..utils.custom_calendar import months_days, str_to_date
 from forms import NewCaseForm, CaseNotesForm
 from .. import db
@@ -198,15 +199,16 @@ def list_cases():
 def notes():
     form = CaseNotesForm()
 
-    if form.validate() and form.validate_on_submit():
+    if form.validate_on_submit():
         search_id = request.form['add_search_id']
         add_notes = request.form['add_notes']
 
-        new_notes = CaseNotes(search_id, add_notes)
+        new_notes = CaseNotes(search_id, add_notes, current_user.username)
         db.session.add(new_notes)
         db.session.commit()
 
         flash('Notes added successfully.')
+        print 'Notes added successfully.'
         return redirect(request.args.get('next') or url_for('dashboard.notes'))
 
     return render_template('dashboard/notes.html', form=form)
