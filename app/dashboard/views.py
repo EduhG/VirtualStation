@@ -5,7 +5,7 @@ import calendar
 from ..utils.custom_calendar import months_days, str_to_date
 from forms import NewCaseForm
 from .. import db
-from .models import ReportedCase, ComplaintTypes
+from .models import ReportedCase, CaseTypes, CaseNotes
 from . import dashboard
 
 now = datetime.now()
@@ -29,7 +29,7 @@ def first_day_of_month(dt):
 def get_complaint_type_count():
     complaints = {}
 
-    for complaint in db.session.query(ComplaintTypes).all():
+    for complaint in db.session.query(CaseTypes).all():
         count = db.session.query(ReportedCase).filter_by(complaint_type=complaint.complaint).count()
         complaints[complaint.complaint] = count
 
@@ -73,7 +73,7 @@ def get_reported_cases():
 def reported_cases_chart():
     comps = []
 
-    for complaint in db.session.query(ComplaintTypes).all():
+    for complaint in db.session.query(CaseTypes).all():
         complaints = {}
 
         count = db.session.query(ReportedCase).filter_by(complaint_type=complaint.complaint).count()

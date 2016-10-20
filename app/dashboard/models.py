@@ -20,7 +20,7 @@ class ReportedCase(db.Model):
 
     case_closed = db.Column(db.Boolean, default=False)
     closed_by = db.Column(db.String(200))
-    reported_date = db.Column(db.Date(), default=None)
+    closed_date = db.Column(db.Date(), default=None)
 
     def __init__(self, id_method, id_number, first_name, other_names, gender,
                  phone_number, email, reg_date, complaint_type, description):
@@ -37,7 +37,7 @@ class ReportedCase(db.Model):
 
 
 class CaseTypes(db.Model):
-    __tablename__ = 'complaint_types'
+    __tablename__ = 'case_types'
 
     id = db.Column(db.Integer, primary_key=True)
     complaint = db.Column(db.String(100), unique=True)
@@ -50,8 +50,9 @@ class CaseNotes(db.Model):
     __tablename__ = 'case_notes'
 
     id = db.Column(db.Integer, primary_key=True)
-    ref_id = db.Column(db.Integer, db.ForeignKey('reported_cases.id'))
+    ref_id = db.Column(db.Integer)
     notes = db.Column(db.String(10000))
 
-    def __init__(self, complaint):
-        self.id_method = complaint
+    def __init__(self, ref_id, notes):
+        self.ref_id = ref_id
+        self.notes = notes
