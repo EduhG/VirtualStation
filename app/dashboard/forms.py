@@ -1,5 +1,7 @@
 from flask_wtf import Form
-from wtforms import SubmitField, validators, StringField, RadioField, TextAreaField, SelectField
+from wtforms import SubmitField, validators, StringField, RadioField, TextAreaField
+
+from .models import ReportedCase
 
 
 class NewCaseForm(Form):
@@ -16,3 +18,24 @@ class NewCaseForm(Form):
 
     submit = SubmitField("Save Details")
 
+
+class CaseNotesForm(Form):
+    search_input = StringField("Email", [validators.DataRequired("Please enter Ref Id to search.")])
+    add_notes = TextAreaField('Description', [validators.DataRequired("Please enter notes to update.")])
+
+    submit = SubmitField("Save Notes")
+
+    def __init__(self, *args, **kwargs):
+        Form.__init__(self, *args, **kwargs)
+
+    def validate(self):
+        if not Form.validate(self):
+            return False
+
+        ref_id = ReportedCase.query.filter_by(id=self.search_input.data).first()
+
+        if ref_id:
+            return True
+        else:
+            self.search_input.errors.append("Ref Number not found")
+            return False

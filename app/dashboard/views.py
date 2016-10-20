@@ -3,7 +3,7 @@ from flask_login import login_required
 from datetime import date, datetime, timedelta
 import calendar
 from ..utils.custom_calendar import months_days, str_to_date
-from forms import NewCaseForm
+from forms import NewCaseForm, CaseNotesForm
 from .. import db
 from .models import ReportedCase, CaseTypes, CaseNotes
 from . import dashboard
@@ -177,10 +177,23 @@ def list_cases():
     return render_template('dashboard/list-cases.html')
 
 
-@dashboard.route('/notes')
+@dashboard.route('/notes', methods=['GET', 'POST'])
 @login_required
 def notes():
-    return render_template('dashboard/notes.html')
+    form = CaseNotesForm()
+
+    if form.validate() and form.validate_on_submit():
+        search_id = request.form['search_input']
+        add_notes = request.form['add_notes']
+
+        newstudent = ReportedCase(search_id, add_notes)
+        db.session.add(newstudent)
+        db.session.commit()
+
+        flash('Invalid username or password.')
+        return redirect(request.args.get('next') or url_for('dashboard.notes'))
+
+    return render_template('dashboard/notes.html', form=form)
 
 
 @dashboard.route('/administrator')
