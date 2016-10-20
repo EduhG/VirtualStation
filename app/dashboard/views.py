@@ -118,10 +118,19 @@ def total_reported_cases_annually():
 
 @dashboard.route('/search_reported_cases')
 def search_reported_cases():
-    ref_id = request.args
-    response = jsonify('[{"received":"received"}]')
+    search_results = []
+
+    ref_id = request.args.get('ref_id')
+
+    for case_notes in db.session.query(CaseNotes).filter_by(ref_id=ref_id).all():
+        found = {'notes': case_notes.notes}
+
+        search_results.append(found)
+
+    print search_results
+
+    response = jsonify(search_results)
     response.headers.add('Access-Control-Allow-Origin', '*')
-    print ref_id.get('ref_id')
     return response
 
 
@@ -173,7 +182,7 @@ def list_cases():
 @dashboard.route('/notes')
 @login_required
 def notes():
-    return render_template('dashboard/list-cases.html')
+    return render_template('dashboard/notes.html')
 
 
 @dashboard.route('/administrator')

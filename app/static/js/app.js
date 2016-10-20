@@ -9,6 +9,28 @@ $(document).ready(function () {
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 15 // Creates a dropdown of 15 years to control year
     });
+
+    $("#search_input").keyup(function(){
+        var search_id = $('#search_input').val();
+        console.log(search_id)
+
+        $.ajax({
+            url: "/dashboard/search_reported_cases",
+            method: "GET",
+            dataType: 'json',
+            data: {
+                ref_id: search_id
+            },
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    });
+
+    console.log("search_input => " + $('#search_input').val())
 });
 
 $('select').material_select();
@@ -251,22 +273,17 @@ $.ajax({
 });
 
 
-$("#search_input").keyup(function(){
-    $("input").css("background-color", "pink");
+
+$("#search_input").click(function(){
+    var search_id = $('#search_input').val();
+
+    alert(search_id)
+    console.log(search_id)
+});
+
+$(document).on('keyup', '#search_input', function() {
+    alert('key up');
 });
 
 
-$.ajax({
-    url: "/dashboard/search_reported_cases",
-    method: "GET",
-    dataType: 'json',
-    data: {
-        ref_id: ref_id
-    },
-    success: function(response) {
-        console.log(response.received);
-    },
-    error: function(data) {
-        console.log(data);
-    }
-});
+
