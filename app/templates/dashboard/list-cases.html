@@ -81,6 +81,12 @@
                     </div>
                     <div class="card-content" style="padding:0">
                         <div class="row" style="padding:0">
+                            <ul id="table_actions" class="dropdown-content" style="width: auto !important;">
+                                <li style="width: auto !important;"><a href="../../templates/dashboard/new-case.html">Add Notes</a></li>
+                                <li class="divider"></li>
+                                <li><a href="../../templates/dashboard/list-cases.html">Close Case</a></li>
+                                <li class="divider"></li>
+                            </ul>
                             <table class="bordered">
                                 <thead class="teal white-text">
                                     <tr>
@@ -101,7 +107,13 @@
                                             <td>{{ case.full_name }}</td>
                                             <td>{{ case.reported_date }}</td>
                                             <td>{{ case.complaint_type }}</td>
-                                            <td>$0.87</td>
+                                            <td style="width: 180px">
+                                                <div>
+                                                    <a class="dropdown-button" href="" data-activates="table_actions" style="width: 180px !important;" >More Options&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <i class="material-icons right">arrow_drop_down</i>
+                                                    </a>
+                                                </div>
+                                            </td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

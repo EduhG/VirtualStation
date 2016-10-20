@@ -5,6 +5,12 @@
         <td>{{ case.full_name }}</td>
         <td>{{ case.reported_date }}</td>
         <td>{{ case.complaint_type }}</td>
-        <td>$0.87</td>
+        <td style="width: 180px">
+            <div>
+                <a class="dropdown-button" href="" data-activates="table_actions" style="width: 180px !important;" >More Options&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="material-icons right">arrow_drop_down</i>
+                </a>
+            </div>
+        </td>
     </tr>
 {% endfor %}
