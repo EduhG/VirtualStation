@@ -251,6 +251,11 @@ $.ajax({
 });
 
 
+$("#search_input").keyup(function(){
+    $("input").css("background-color", "pink");
+});
+
+
 $.ajax({
     url: "/dashboard/search_reported_cases",
     method: "GET",
