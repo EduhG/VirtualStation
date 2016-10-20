@@ -52,6 +52,8 @@ class CaseNotes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     ref_id = db.Column(db.Integer)
     notes = db.Column(db.String(10000))
+    date_created = db.Column(db.Date(), default=datetime.now().date())
+    created_by = db.Column(db.String(100))
 
     def __init__(self, ref_id, notes):
         self.ref_id = ref_id

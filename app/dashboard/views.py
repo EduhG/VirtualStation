@@ -127,8 +127,6 @@ def search_reported_cases():
 
         search_results.append(found)
 
-    print search_results
-
     response = jsonify(search_results)
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
