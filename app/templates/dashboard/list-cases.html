@@ -82,6 +82,39 @@
                     <div class="card-content" style="padding:0">
                         <div class="row" style="padding:0">
 
+                            <!-- Modal Structure -->
+                            <div id="modal1" class="modal modal-fixed-footer">
+                                <form action="">
+                                    <div class="modal-content">
+                                        <h4>Close Case</h4>
+                                        <div>
+                                            <div class="row">
+                                                <div class="input-field col s6">
+                                                    <input name="search_name1" id="search_name1" type="text" class="validate">
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="input-field col s6">
+                                                    <input name="opened_on" id="opened_on" type="text" class="validate">
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="input-field col s12">
+                                                    <textarea aria-describedby="add_notesHelpText" class="validate notes" id="add_notes" name="add_notes"></textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Exit</a>
+                                        <input class="modal-action modal-close waves-effect waves-green btn-flat" id="submit" name="submit" type="submit" value="Save to Close">
+                                    </div>
+                                </form>
+                            </div>
+
                             <table class="bordered">
                                 <thead class="teal white-text">
                                     <tr>
@@ -97,18 +130,18 @@
                                 <tbody id="tbl_body">
                                     <div>
                                         <ul id="table_actions" class="dropdown-content" style="width: auto !important;">
-                                            <li style="width: auto !important;"><a href="../../templates/dashboard/new-case.html">Add Notes</a></li>
+                                            <li style="width: auto !important;"><a href="{{ url_for('dashboard.notes') }}">Add Notes</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="../../templates/dashboard/list-cases.html">Close Case</a></li>
+                                            <li><a class="modal-trigger use-address" href="#modal1">Close Case</a></li>
                                             <li class="divider"></li>
                                         </ul>
                                     </div>
                                     {% for case in search_results %}
                                         <tr>
-                                            <td>{{ case.id }}</td>
-                                            <td>{{ case.id_number }}</td>
-                                            <td>{{ case.full_name }}</td>
-                                            <td>{{ case.reported_date }}</td>
+                                            <td class="id">{{ case.id }}</td>
+                                            <td class="">{{ case.id_number }}</td>
+                                            <td class="full_name">{{ case.full_name }}</td>
+                                            <td class="reported_date">{{ case.reported_date }}</td>
                                             <td>{{ case.complaint_type }}</td>
                                             <td style="width: 180px">
                                                 <div>

@@ -10,7 +10,22 @@ $(document).ready(function () {
         selectYears: 15 // Creates a dropdown of 15 years to control year
     });
 
+    $('.modal-trigger').leanModal();
+
     $("#search_name").prop('disabled', true);
+    $("#search_name1").prop('disabled', true);
+    $("#opened_on").prop('disabled', true);
+
+    $(".use-address").click(function() {
+        var $row = $(this).closest("tr");    // Find the row
+        var id = $row.find(".id").text(); // Find the text
+
+        var full_name = $row.find(".full_name").text(); // Find the text
+        var reported_date = $row.find(".reported_date").text(); // Find the text
+
+        $('#search_name1').val(full_name)
+        $('#opened_on').val(reported_date)
+    });
 
     $("#search_input").keyup(function(){
         var search_id = $('#search_input').val();
