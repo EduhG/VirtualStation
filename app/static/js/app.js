@@ -30,6 +30,8 @@ $(document).ready(function () {
         });
     });
 
+    $("#add_full_name").prop('disabled', true);
+
     $("#add_search_id").keyup(function(){
         var search_id = $('#add_search_id').val();
         console.log(search_id)
@@ -39,10 +41,13 @@ $(document).ready(function () {
             method: "GET",
             dataType: 'json',
             data: {
-                ref_id: search_id
+                search_id: search_id
             },
             success: function(data) {
                 console.log(data);
+                var first_name = data[0]['first_name']
+                var other_names = data[0]['other_names']
+                $('#add_full_name').val(first_name + " " + other_names)
             },
             error: function(data) {
                 console.log(data);

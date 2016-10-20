@@ -120,6 +120,22 @@ def total_reported_cases_annually():
 def search_reported_cases():
     search_results = []
 
+    search_id = request.args.get('search_id')
+
+    for case in db.session.query(ReportedCase).filter_by(id=search_id).all():
+        found_details = {'first_name': case.first_name, 'other_names': case.other_names}
+
+        search_results.append(found_details)
+
+    response = jsonify(search_results)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+
+@dashboard.route('/search_notes')
+def search_notes():
+    search_results = []
+
     ref_id = request.args.get('ref_id')
 
     for case_notes in db.session.query(CaseNotes).filter_by(ref_id=ref_id).all():
