@@ -137,16 +137,18 @@ def search_reported_cases():
 def search_notes():
     search_results = []
 
-    ref_id = request.args.get('ref_id')
+    ref_id = request.args.get('search_id')
 
     for case_notes in db.session.query(CaseNotes).filter_by(ref_id=ref_id).all():
         found = {'notes': case_notes.notes}
 
         search_results.append(found)
 
-    response = jsonify(search_results)
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
+    #response = jsonify(search_results)
+    #response.headers.add('Access-Control-Allow-Origin', '*')
+    #return response
+
+    return render_template('dashboard/notes_results.html', search_results=search_results)
 
 
 def current_date():

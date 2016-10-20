@@ -14,9 +14,9 @@ $(document).ready(function () {
 
     $("#search_input").keyup(function(){
         var search_id = $('#search_input').val();
-        console.log(search_id)
+        console.log('searching id => '+ search_id)
 
-        $.ajax({
+        /*$.ajax({
             url: "/dashboard/search_reported_cases",
             method: "GET",
             dataType: 'json',
@@ -38,7 +38,30 @@ $(document).ready(function () {
                 console.log(data);
                 $('#search_name').val("")
             }
+        });*/
+
+        $.ajax({
+            url: "/dashboard/search_notes",
+            method: "GET",
+            dataType: 'html',
+            data: {
+                search_id: search_id
+            },
+            success: function(data) {
+                console.log(data);
+
+                if(data.length > 0){
+                    //$( "#result" ).load( data );
+                    $('#result').html(data);
+                } else {
+                    $( "#result" ).load( data );
+                }
+            },
+            error: function(data) {
+                console.log(data);
+            }
         });
+
     });
 
     $("#add_full_name").prop('disabled', true);

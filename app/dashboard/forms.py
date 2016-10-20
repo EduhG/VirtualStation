@@ -32,10 +32,8 @@ class CaseNotesForm(Form):
     def validate(self):
 
         ref_id = ReportedCase.query.filter_by(id=self.add_search_id.data).first()
-        print 'ref-id', ref_id
 
         if ref_id and len(self.add_notes.data) > 10:
             return True
         else:
-            #self.add_search_id.errors.append("Ref Number not found")
             return False
