@@ -117,22 +117,33 @@
                                     <div class="row" style="margin:0">
                                         <div class="input-field col s6"></div>
                                         <div class="input-field col s6">
-                                            <input name="id_number" id="id_number" type="text" class="validate">
-                                            <label for="id_number">Ref Number</label>
+                                            <!--<input name="id_number" id="id_number" type="text" class="validate">
+                                            <label for="id_number">Ref Number</label>-->
+
+                                            {{ form.id_number( class_="validate", **{'aria-describedby':"add_search_idHelpText"} ) }}
+                                            <label for="add_search_id">Ref Number</label>
+                                            {% for message in form.add_search_id.errors %}
+                                                <div class="center-align, error" id="add_search_idHelpText">{{ message }}</div>
+                                            {% endfor %}
                                         </div>
                                     </div>
 
                                     <div class="row" style="margin:0">
                                         <div class="input-field col s6"></div>
                                         <div class="input-field col s6">
-                                            <input name="id_number" id="id_number" type="text" class="validate">
-                                            <label for="id_number">Opened On</label>
+                                            <input name="add_full_name" id="add_full_name" type="text" class="validate">
+                                            <label for="add_full_name">Opened On</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="input-field col s12 l12 m12">
-                                            <textarea class="notes"></textarea>
+                                            <!--<textarea class="notes"></textarea>-->
+
+                                            {{ form.add_notes( class_="validate notes", **{'aria-describedby':"add_notesHelpText"} ) }}
+                                            {% for message in form.add_notes.errors %}
+                                                <div class="center-align, error" id="add_notesHelpText">{{ message }}</div>
+                                            {% endfor %}
                                         </div>
                                     </div>
 

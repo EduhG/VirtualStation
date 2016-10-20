@@ -183,14 +183,14 @@ def notes():
     form = CaseNotesForm()
 
     if form.validate() and form.validate_on_submit():
-        search_id = request.form['search_input']
+        search_id = request.form['add_search_id']
         add_notes = request.form['add_notes']
 
-        newstudent = ReportedCase(search_id, add_notes)
-        db.session.add(newstudent)
+        new_notes = CaseNotes(search_id, add_notes)
+        db.session.add(new_notes)
         db.session.commit()
 
-        flash('Invalid username or password.')
+        flash('Notes added successfully.')
         return redirect(request.args.get('next') or url_for('dashboard.notes'))
 
     return render_template('dashboard/notes.html', form=form)

@@ -30,6 +30,26 @@ $(document).ready(function () {
         });
     });
 
+    $("#add_search_id").keyup(function(){
+        var search_id = $('#add_search_id').val();
+        console.log(search_id)
+
+        $.ajax({
+            url: "/dashboard/search_reported_cases",
+            method: "GET",
+            dataType: 'json',
+            data: {
+                ref_id: search_id
+            },
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    });
+
     console.log("search_input => " + $('#search_input').val())
 });
 

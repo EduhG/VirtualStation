@@ -20,7 +20,7 @@ class NewCaseForm(Form):
 
 
 class CaseNotesForm(Form):
-    search_input = StringField("Email", [validators.DataRequired("Please enter Ref Id to search.")])
+    add_search_id = StringField("Email", [validators.DataRequired("Please enter Ref Id to search.")])
     add_notes = TextAreaField('Description', [validators.DataRequired("Please enter notes to update.")])
 
     submit = SubmitField("Save Notes")
@@ -32,10 +32,10 @@ class CaseNotesForm(Form):
         if not Form.validate(self):
             return False
 
-        ref_id = ReportedCase.query.filter_by(id=self.search_input.data).first()
+        ref_id = ReportedCase.query.filter_by(id=self.add_search_id.data).first()
 
         if ref_id:
             return True
         else:
-            self.search_input.errors.append("Ref Number not found")
+            self.add_search_id.errors.append("Ref Number not found")
             return False
