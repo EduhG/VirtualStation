@@ -16,7 +16,7 @@ $(document).ready(function () {
         var search_id = $('#search_input').val();
         console.log('searching id => '+ search_id)
 
-        /*$.ajax({
+        $.ajax({
             url: "/dashboard/search_reported_cases",
             method: "GET",
             dataType: 'json',
@@ -38,7 +38,7 @@ $(document).ready(function () {
                 console.log(data);
                 $('#search_name').val("")
             }
-        });*/
+        });
 
         $.ajax({
             url: "/dashboard/search_notes",

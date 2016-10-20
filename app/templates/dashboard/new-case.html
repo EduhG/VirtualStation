@@ -48,15 +48,15 @@
                         </div>
                     </li>
                     <li class="divider" style="margin:0"></li>
-                    <li class="bold"><a href="{{ url_for('dashboard.index') }}" class="waves-effect waves-teal" style="">Dashboard</a></li>
+                    <li class="bold active"><a href="{{ url_for('dashboard.index') }}" class="waves-effect waves-teal" style="">Dashboard</a></li>
                     <li class="divider" style="margin:0"></li>
-                    <li class="bold active"><a href="{{ url_for('dashboard.newcase') }}">Open New Case</a></li>
+                    <li class="bold"><a href="{{ url_for('dashboard.newcase') }}">Open New Case</a></li>
                     <li class="divider" style="margin:0"></li>
-                    <li class=""><a href="../../templates/dashboard/list-cases.html">List Open Cases</a></li>
+                    <li class=""><a href="{{ url_for('dashboard.list_cases') }}">List Open Cases</a></li>
                     <li class="divider" style="margin:0"></li>
-                    <li class=""><a href="../../templates/dashboard/notes.html">Notes</a></li>
+                    <li class=""><a href="{{ url_for('dashboard.notes') }} ">Notes</a></li>
                     <li class="divider" style="margin:0"></li>
-                    <li class=""><a href="../../templates/dashboard/notes.html">Administrator</a></li>
+                    <li class=""><a href="{{ url_for('dashboard.administrator') }} ">Administrator</a></li>
                     <li class="divider" style="margin:0"></li>
                 </ul>
             </div>
@@ -88,9 +88,6 @@
                                     </select>
                                 </div>
                                 <div class="input-field col s6">
-                                    <!--<input name="id_number" id="id_number" type="text" class="validate">
-                                    <label for="id_number">Number</label>-->
-
                                     {{ form.id_number( class_="validate", **{'aria-describedby':"idNoHelpText"} ) }}
                                     <label for="id_number">Number</label>
                                     {% for message in form.id_number.errors %}
@@ -101,9 +98,6 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s4">
-                                    <!--<input name="first_name" id="first_name" type="text" class="validate">
-                                    <label for="first_name">First Name</label>-->
-
                                     {{ form.first_name( class_="validate", **{'aria-describedby':"firstNameHelpText"} ) }}
                                     <label for="first_name">First Name</label>
                                     {% for message in form.first_name.errors %}
@@ -112,9 +106,6 @@
 
                                 </div>
                                 <div class="input-field col s6">
-                                    <!--<input name="last_name" id="last_name" type="text" class="validate">
-                                    <label for="last_name">Last Name</label>-->
-
                                     {{ form.other_names( class_="validate", **{'aria-describedby':"otherNamesHelpText"} ) }}
                                     <label for="other_names">Other Names</label>
                                     {% for message in form.other_names.errors %}
@@ -130,22 +121,11 @@
                                         {{ subfield.label }}
                                     </p>
                                     {% endfor %}
-                                    <!--<p>
-                                        <input name="gender" type="radio" id="male" />
-                                        <label for="male">Male</label>
-                                    </p>
-                                    <p>
-                                        <input name="gender" type="radio" id="female" />
-                                        <label for="female">Female</label>
-                                    </p>-->
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <!--<input name="phone_number" id="phone_number" type="text" class="validate">
-                                    <label for="phone_number">Phone Number</label>-->
-
                                     {{ form.phone_number( class_="validate", **{'aria-describedby':"phoneNumberHelpText"} ) }}
                                     <label for="phone_number">Phone Number</label>
                                     {% for message in form.phone_number.errors %}
@@ -154,9 +134,6 @@
 
                                 </div>
                                 <div class="input-field col s6">
-                                    <!--<input name="email" id="email" type="text" class="validate">
-                                    <label for="email">Email</label>-->
-
                                     {{ form.email( class_="validate", **{'aria-describedby':"emailHelpText"} ) }}
                                     <label for="email">Email</label>
                                     {% for message in form.email.errors %}
@@ -184,9 +161,6 @@
 
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <!--<textarea name="description" id="description" class="materialize-textarea"></textarea>
-                                    <label for="description">Description</label>-->
-
                                     {{ form.description( class_="validate materialize-textarea", **{'aria-describedby':"descriptionHelpText"} ) }}
                                     <label for="description">Email</label>
                                     {% for message in form.description.errors %}
@@ -203,7 +177,6 @@
                                 <div class="divider"></div>
                                 <div style="padding: 10px;">
                                     <a class="waves-effect waves-light btn-large">Cancel</a>
-                                    <!--<a class="waves-effect waves-light btn-large">Save Details</a>-->
                                     {{ form.submit(class_="waves-effect waves-light btn-large") }}
                                 </div>
 
@@ -215,7 +188,6 @@
                 </div>
             </div>
         </div>
-
 
     </div>
 

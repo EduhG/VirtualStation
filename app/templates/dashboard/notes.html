@@ -25,27 +25,39 @@
             <li><a href="#!">Search Cases</a></li>
         </ul>
 
-        <nav class="brown darken-4 z-depth-1" style="position: relative !important; z-index:10000 !important">
+        <nav class="brown darken-2 z-depth-1" style="position: relative !important; z-index:10000 !important">
             <div class="nav-wrapper" style="padding-left:30px">
                 <a id="logo-container" href="#" class="brand-logo">Virtual Station</a>
                 <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li style="width: 200px !important;"><a class="dropdown-button" href="#!" data-activates="dropdown1">Occurrence Book<i class="material-icons right">arrow_drop_down</i></a></li>
+                    {% if current_user.is_authenticated %}
+                        <li style="width: 200px !important;"><a class="dropdown-button" href="" data-activates="dropdown1">Occurrence Book<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a href="{{ url_for('auth.signout') }}">Sign Out</a></li>
+                        {% else %}
+                        <li><a href="{{ url_for('auth.signin') }}">Sign In</a></li>
+                        {% endif %}
+
                 </ul>
                 <ul id="slide-out" class="side-nav fixed" style="width: 280px; color: #fff !important; margin-top: 0px !important">
                     <li class="profile-bg" style="">
                         <div class="userView">
                             <img class="background" src="images/office.jpg">
-                            <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
+                            <a href="#!user"><img class="circle" src="{{ url_for('static', filename='images/administrator.jpg') }}"></a>
                             <a href="#!name"><span class="white-text name">John Doe</span></a>
                             <a href="#!email"><span class="white-text email">johndoe@gmail.com</span></a>
                         </div>
                     </li>
-
-                    <li class="bold"><a href="../../templates/dashboard/dashboard.html" class="waves-effect waves-teal" style="">Dashboard</a></li>
-                    <li class="bold"><a href="../../templates/dashboard/new-case.html">Open New Case</a></li>
-                    <li><a href="../../templates/dashboard/list-cases.html">List Open Cases</a></li>
-                    <li class="active"><a href="../../templates/dashboard/notes.html">Notes</a></li>
+                    <li class="divider" style="margin:0"></li>
+                    <li class="bold active"><a href="{{ url_for('dashboard.index') }}" class="waves-effect waves-teal" style="">Dashboard</a></li>
+                    <li class="divider" style="margin:0"></li>
+                    <li class="bold"><a href="{{ url_for('dashboard.newcase') }}">Open New Case</a></li>
+                    <li class="divider" style="margin:0"></li>
+                    <li class=""><a href="{{ url_for('dashboard.list_cases') }}">List Open Cases</a></li>
+                    <li class="divider" style="margin:0"></li>
+                    <li class=""><a href="{{ url_for('dashboard.notes') }} ">Notes</a></li>
+                    <li class="divider" style="margin:0"></li>
+                    <li class=""><a href="{{ url_for('dashboard.administrator') }} ">Administrator</a></li>
+                    <li class="divider" style="margin:0"></li>
                 </ul>
             </div>
         </nav>
@@ -57,7 +69,7 @@
             <div class="col l12 m12 s12">
                 <div class="card">
                     <div class="card-content" style="min-height: 430px; padding:0">
-                        <div style="padding: 10px; font-size: 30px" class="teal white-text">New Case</div>
+                        <div style="padding: 10px; font-size: 30px" class="teal white-text">Case Notes</div>
 
                         <div>
                             <form class="col s12" action="" method="POST">
@@ -84,22 +96,7 @@
 
                         </div>
                         <div id="result">
-                            <ul id="task-card" class="collection with-header" style="border-left: 0px solid #fff!important;">
-                                <li class="collection-item dismissable" style="padding: 20px !important;  margin:10px">
-                                    <label>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil commodi quisquam quam natus, corporis recusandae suscipit omnis quaerat distinctio earum tempore velit optio architecto, vitae sed ducimus hic aspernatur ab. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit quod quae laboriosam quam, eveniet inventore reiciendis repellendus. Tempore, itaque facilis reprehenderit aspernatur laudantium nostrum, sit veritatis, incidunt dolorum perferendis minima. <a href="#" class="secondary-content"><span class="ultra-small">9 days ago</span></a>
-                                    </label>
-                                </li>
 
-                                <li class="collection-item dismissable" style="padding: 20px !important;  margin:10px">
-                                    <label>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil commodi quisquam quam natus, corporis recusandae suscipit omnis quaerat distinctio earum tempore velit optio architecto, vitae sed ducimus hic aspernatur ab. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit quod quae laboriosam quam, eveniet inventore reiciendis repellendus. Tempore, itaque facilis reprehenderit aspernatur laudantium nostrum, sit veritatis, incidunt dolorum perferendis minima. <a href="#" class="secondary-content"><span class="ultra-small">9 days ago</span></a>
-                                    </label>
-                                </li>
-
-                                <li class="collection-item dismissable" style="padding: 20px !important; margin:10px">
-                                    <label>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil commodi quisquam quam natus, corporis recusandae suscipit omnis quaerat distinctio earum tempore velit optio architecto, vitae sed ducimus hic aspernatur ab. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit quod quae laboriosam quam, eveniet inventore reiciendis repellendus. Tempore, itaque facilis reprehenderit aspernatur laudantium nostrum, sit veritatis, incidunt dolorum perferendis minima. <a href="#" class="secondary-content"><span class="ultra-small">9 days ago</span></a>
-                                    </label>
-                                </li>
-                            </ul>
                         </div>
 
 
