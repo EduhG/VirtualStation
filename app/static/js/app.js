@@ -10,6 +10,8 @@ $(document).ready(function () {
         selectYears: 15 // Creates a dropdown of 15 years to control year
     });
 
+    $("#search_name").prop('disabled', true);
+
     $("#search_input").keyup(function(){
         var search_id = $('#search_input').val();
         console.log(search_id)
@@ -19,13 +21,22 @@ $(document).ready(function () {
             method: "GET",
             dataType: 'json',
             data: {
-                ref_id: search_id
+                search_id: search_id
             },
             success: function(data) {
                 console.log(data);
+
+                if(data.length > 0){
+                    var first_name = data[0]['first_name']
+                    var other_names = data[0]['other_names']
+                    $('#search_name').val(first_name + " " + other_names)
+                } else {
+                    $('#search_name').val("")
+                }
             },
             error: function(data) {
                 console.log(data);
+                $('#search_name').val("")
             }
         });
     });
@@ -45,12 +56,18 @@ $(document).ready(function () {
             },
             success: function(data) {
                 console.log(data);
-                var first_name = data[0]['first_name']
-                var other_names = data[0]['other_names']
-                $('#add_full_name').val(first_name + " " + other_names)
+                if(data.length > 0){
+                    var first_name = data[0]['first_name']
+                    var other_names = data[0]['other_names']
+                    $('#add_full_name').val(first_name + " " + other_names)
+                } else {
+                    $('#add_full_name').val("")
+                }
+
             },
             error: function(data) {
                 console.log(data);
+                $('#add_full_name').val("")
             }
         });
     });
