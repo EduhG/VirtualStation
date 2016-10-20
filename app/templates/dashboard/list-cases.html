@@ -74,8 +74,8 @@
                         </div>
                         <div class="col l6 m6 s12">
                             <div class="input-field col s12">
-                                <input id="email" type="text" class="validate">
-                                <label for="email">Search</label>
+                                <input id="reported_search_id" type="text" class="validate">
+                                <label for="reported_search_id">Search</label>
                             </div>
                         </div>
                     </div>
@@ -93,31 +93,17 @@
                                     </tr>
                                 </thead>
 
-                                <tbody>
-                                    <tr>
-                                        <td>Alvin</td>
-                                        <td>Eclair</td>
-                                        <td>$0.87</td>
-                                        <td>Alvin</td>
-                                        <td>Eclair</td>
-                                        <td>$0.87</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Alan</td>
-                                        <td>Jellybean</td>
-                                        <td>$3.76</td>
-                                        <td>Alvin</td>
-                                        <td>Eclair</td>
-                                        <td>$0.87</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jonathan</td>
-                                        <td>Lollipop</td>
-                                        <td>$7.00</td>
-                                        <td>Alvin</td>
-                                        <td>Eclair</td>
-                                        <td>$0.87</td>
-                                    </tr>
+                                <tbody id="tbl_body">
+                                    {% for case in search_results %}
+                                        <tr>
+                                            <td>{{ case.id }}</td>
+                                            <td>{{ case.id_number }}</td>
+                                            <td>{{ case.full_name }}</td>
+                                            <td>{{ case.reported_date }}</td>
+                                            <td>{{ case.complaint_type }}</td>
+                                            <td>$0.87</td>
+                                        </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>

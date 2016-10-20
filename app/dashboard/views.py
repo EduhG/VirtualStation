@@ -144,11 +144,27 @@ def search_notes():
 
         search_results.append(found)
 
-    #response = jsonify(search_results)
-    #response.headers.add('Access-Control-Allow-Origin', '*')
-    #return response
-
     return render_template('dashboard/notes_results.html', search_results=search_results)
+
+
+@dashboard.route('/reported_cases_search')
+def reported_cases_search():
+    search_results = []
+
+    ref_id = request.args.get('search_id')
+
+    for case in db.session.query(ReportedCase).filter(ReportedCase.id.like('%'+ref_id+'%')).all():
+        found = {
+            'id': case.id,
+            'id_number': case.id_number,
+            'full_name': str(case.first_name) + " " + str(case.other_names),
+            'reported_date': case.reported_date,
+            'complaint_type': case.complaint_type
+        }
+
+        search_results.append(found)
+
+    return render_template('dashboard/reported_cases_table.html', search_results=search_results)
 
 
 def current_date():
@@ -193,7 +209,20 @@ def newcase():
 @dashboard.route('/list_cases')
 @login_required
 def list_cases():
-    return render_template('dashboard/list-cases.html')
+    search_results = []
+
+    for case in db.session.query(ReportedCase).filter(ReportedCase.id.like('%%')).all():
+        found = {
+            'id': case.id,
+            'id_number': case.id_number,
+            'full_name': str(case.first_name) + " " + str(case.other_names),
+            'reported_date': case.reported_date,
+            'complaint_type': case.complaint_type
+        }
+
+        search_results.append(found)
+
+    return render_template('dashboard/list-cases.html', search_results=search_results)
 
 
 @dashboard.route('/notes', methods=['GET', 'POST'])

@@ -96,6 +96,34 @@ $(document).ready(function () {
     });
 
     console.log("search_input => " + $('#search_input').val())
+
+
+    $("#reported_search_id").keyup(function(){
+        var search_id = $('#reported_search_id').val();
+
+        $.ajax({
+            url: "/dashboard/reported_cases_search",
+            method: "GET",
+            dataType: 'html',
+            data: {
+                search_id: search_id
+            },
+            success: function(data) {
+                console.log(data);
+
+                if(data.length > 0){
+                    $('#tbl_body').html(data);
+                } else {
+                    $('#tbl_body').html(data);
+                }
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+
+
+    });
 });
 
 $('select').material_select();
