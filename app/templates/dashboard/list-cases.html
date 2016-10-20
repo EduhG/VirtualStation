@@ -81,12 +81,7 @@
                     </div>
                     <div class="card-content" style="padding:0">
                         <div class="row" style="padding:0">
-                            <ul id="table_actions" class="dropdown-content" style="width: auto !important;">
-                                <li style="width: auto !important;"><a href="../../templates/dashboard/new-case.html">Add Notes</a></li>
-                                <li class="divider"></li>
-                                <li><a href="../../templates/dashboard/list-cases.html">Close Case</a></li>
-                                <li class="divider"></li>
-                            </ul>
+
                             <table class="bordered">
                                 <thead class="teal white-text">
                                     <tr>
@@ -100,6 +95,14 @@
                                 </thead>
 
                                 <tbody id="tbl_body">
+                                    <div>
+                                        <ul id="table_actions" class="dropdown-content" style="width: auto !important;">
+                                            <li style="width: auto !important;"><a href="../../templates/dashboard/new-case.html">Add Notes</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="../../templates/dashboard/list-cases.html">Close Case</a></li>
+                                            <li class="divider"></li>
+                                        </ul>
+                                    </div>
                                     {% for case in search_results %}
                                         <tr>
                                             <td>{{ case.id }}</td>
