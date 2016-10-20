@@ -116,6 +116,15 @@ def total_reported_cases_annually():
     return response
 
 
+@dashboard.route('/search_reported_cases')
+def search_reported_cases():
+    ref_id = request.args
+    response = jsonify('[{"received":"received"}]')
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    print ref_id.get('ref_id')
+    return response
+
+
 def current_date():
     return '{} {} {}'.format(date.today().strftime("%B"), str(now.day) + ',', now.year)
 
@@ -143,8 +152,6 @@ def newcase():
         reg_date = str_to_date(request.form['reg_date'])
         complaint_type = request.form['complaint_type']
         description = request.form['description']
-
-        #print reg_date.split()
 
         newstudent = ReportedCase(id_method, id_number, first_name, other_names, gender,
                                   phone_number, email, reg_date, complaint_type, description)

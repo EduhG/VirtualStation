@@ -249,3 +249,19 @@ $.ajax({
         console.log(data);
     }
 });
+
+
+$.ajax({
+    url: "/dashboard/search_reported_cases",
+    method: "GET",
+    dataType: 'json',
+    data: {
+        ref_id: ref_id
+    },
+    success: function(response) {
+        console.log(response.received);
+    },
+    error: function(data) {
+        console.log(data);
+    }
+});
