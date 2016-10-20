@@ -89,41 +89,38 @@
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
                         <div class="row">
-                            <form class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s6">
-                                        <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                                        <label for="first_name">First Name</label>
+                            <form class="col s12" action="" method="POST">
+
+                                <div>
+                                    <div class="row" style="margin:0">
+                                        <div class="input-field col s6"></div>
+                                        <div class="input-field col s6">
+                                            <input name="id_number" id="id_number" type="text" class="validate">
+                                            <label for="id_number">Ref Number</label>
+                                        </div>
                                     </div>
-                                    <div class="input-field col s6">
-                                        <input id="last_name" type="text" class="validate">
-                                        <label for="last_name">Last Name</label>
+
+                                    <div class="row" style="margin:0">
+                                        <div class="input-field col s6"></div>
+                                        <div class="input-field col s6">
+                                            <input name="id_number" id="id_number" type="text" class="validate">
+                                            <label for="id_number">Opened On</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input disabled value="I am not editable" id="disabled" type="text" class="validate">
-                                        <label for="disabled">Disabled</label>
+
+                                    <div class="row">
+                                        <div class="input-field col s12 l12 m12">
+                                            <textarea class="notes"></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="password" type="password" class="validate">
-                                        <label for="password">Password</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="email" type="email" class="validate">
-                                        <label for="email">Email</label>
-                                    </div>
+
                                 </div>
                             </form>
                         </div>
                     </div>
 
                     <div class="card-action" style="padding:20px; padding-bottom:5px">
-                        <span class="card-title activator" style="padding:1px !important"><i class="material-icons right">more_vert</i></span>
+                        <span class="card-title activator" style="padding:1px !important"><i class="material-icons right">add</i></span>
                     </div>
                 </div>
             </div>
