@@ -13,7 +13,7 @@ $(document).ready(function () {
     $('.modal-trigger').leanModal();
 
     $("#search_name").prop('disabled', true);
-    $("#search_name1").prop('disabled', true);
+    $("#add_close_id").prop('disabled', true);
     $("#opened_on").prop('disabled', true);
 
     $(".use-address").click(function() {
@@ -23,8 +23,8 @@ $(document).ready(function () {
         var full_name = $row.find(".full_name").text(); // Find the text
         var reported_date = $row.find(".reported_date").text(); // Find the text
 
-        $('#search_name1').val(full_name)
-        $('#opened_on').val(reported_date)
+        $('#add_close_id').val(id)
+        $('#opened_on').val(full_name)
     });
 
     $("#search_input").keyup(function(){

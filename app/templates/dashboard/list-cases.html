@@ -84,13 +84,19 @@
 
                             <!-- Modal Structure -->
                             <div id="modal1" class="modal modal-fixed-footer">
-                                <form action="">
+                                <form action="" method="POST">
+                                    {{ form.hidden_tag() }}
+
                                     <div class="modal-content">
                                         <h4>Close Case</h4>
                                         <div>
                                             <div class="row">
                                                 <div class="input-field col s6">
-                                                    <input name="search_name1" id="search_name1" type="text" class="validate">
+                                                    <!--<input name="search_name1" id="search_name1" type="text" class="validate">-->
+                                                    {{ form.add_close_id( class_="validate", **{'aria-describedby':"closeIdHelpText"} ) }}
+                                                    {% for message in form.add_close_id.errors %}
+                                                        <div class="center-align, error" id="closeIdHelpText">{{ message }}</div>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
 
@@ -102,15 +108,20 @@
 
                                             <div class="row">
                                                 <div class="input-field col s12">
-                                                    <textarea aria-describedby="add_notesHelpText" class="validate notes" id="add_notes" name="add_notes"></textarea>
+                                                    <!--<textarea aria-describedby="add_notesHelpText" class="validate notes" id="add_close_notes" name="add_close_notes"></textarea>-->
+                                                    {{ form.add_close_notes( class_="validate notes", **{'aria-describedby':"closeNotesHelpText"} ) }}
+                                                    {% for message in form.add_close_notes.errors %}
+                                                        <div class="center-align, error" id="closeNotesHelpText">{{ message }}</div>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Exit</a>
-                                        <input class="modal-action modal-close waves-effect waves-green btn-flat" id="submit" name="submit" type="submit" value="Save to Close">
+                                        <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat">Exit</a>
+                                        <!--<input class="modal-action modal-close waves-effect waves-green btn-flat" id="submit" name="submit" type="submit" value="Save to Close">-->
+                                        {{ form.submit(class_="modal-action modal-close waves-effect waves-green btn-flat") }}
                                     </div>
                                 </form>
                             </div>

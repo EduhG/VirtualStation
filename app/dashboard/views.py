@@ -4,7 +4,7 @@ from datetime import date, datetime, timedelta
 import calendar
 from flask_login import current_user
 from ..utils.custom_calendar import months_days, str_to_date
-from forms import NewCaseForm, CaseNotesForm
+from forms import NewCaseForm, CaseNotesForm, CloseCaseForm
 from .. import db
 from .models import ReportedCase, CaseTypes, CaseNotes
 from . import dashboard
@@ -206,9 +206,10 @@ def newcase():
     return render_template('dashboard/new-case.html', form=form)
 
 
-@dashboard.route('/list_cases')
+@dashboard.route('/list_cases', methods=['GET', 'POST'])
 @login_required
 def list_cases():
+    form = CloseCaseForm(request.form)
     search_results = []
 
     for case in db.session.query(ReportedCase).filter(ReportedCase.id.like('%%')).all():
@@ -222,7 +223,29 @@ def list_cases():
 
         search_results.append(found)
 
-    return render_template('dashboard/list-cases.html', search_results=search_results)
+    if request.method == 'POST' and form.validate():
+        print 'submitting'
+        search_id = request.form['search_name1']
+        close_notes = request.form['add_close_notes']
+
+        print 'submitting'
+
+        reported_case = ReportedCase.query.filter_by(id=search_id).first()
+
+        reported_case.case_closed = True
+        reported_case.closed_by = current_user.username
+        reported_case.closed_date = date.today()
+
+        db.session.commit()
+
+        #new_notes = CaseNotes(search_id, close_notes, current_user.username)
+        #db.session.add(new_notes)
+        #db.session.commit()
+
+        flash('Invalid username or password.')
+        return redirect(request.args.get('next') or url_for('dashboard.list_cases'))
+
+    return render_template('dashboard/list-cases.html', search_results=search_results, form=form)
 
 
 @dashboard.route('/notes', methods=['GET', 'POST'])

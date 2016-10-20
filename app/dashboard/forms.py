@@ -20,8 +20,8 @@ class NewCaseForm(Form):
 
 
 class CaseNotesForm(Form):
-    add_search_id = StringField("Email", [validators.DataRequired("Please enter Ref Id to search.")])
-    add_notes = TextAreaField('Description', [validators.DataRequired("Please enter notes to update."),
+    add_search_id = StringField("Email", [validators.InputRequired("Please enter Ref Id to search.")])
+    add_notes = TextAreaField('Description', [validators.InputRequired("Please enter notes to update."),
                                               validators.Length(10, 1000)])
 
     submit = SubmitField("Save Notes")
@@ -37,3 +37,10 @@ class CaseNotesForm(Form):
             return True
         else:
             return False
+
+
+class CloseCaseForm(Form):
+    add_close_id = StringField('Case Id', [validators.InputRequired("Case Id can not be empty.")])
+    add_close_notes = TextAreaField('Description', [validators.InputRequired("Please enter notes to update.")])
+
+    submit = SubmitField("Save to Close")
