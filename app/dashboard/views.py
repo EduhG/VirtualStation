@@ -225,10 +225,9 @@ def list_cases():
 
     if request.method == 'POST' and form.validate():
         print 'submitting'
-        search_id = request.form['search_name1']
+        print request.form
+        search_id = request.form['add_close_id']
         close_notes = request.form['add_close_notes']
-
-        print 'submitting'
 
         reported_case = ReportedCase.query.filter_by(id=search_id).first()
 
@@ -238,9 +237,9 @@ def list_cases():
 
         db.session.commit()
 
-        #new_notes = CaseNotes(search_id, close_notes, current_user.username)
-        #db.session.add(new_notes)
-        #db.session.commit()
+        new_notes = CaseNotes(search_id, close_notes, current_user.username)
+        db.session.add(new_notes)
+        db.session.commit()
 
         flash('Invalid username or password.')
         return redirect(request.args.get('next') or url_for('dashboard.list_cases'))

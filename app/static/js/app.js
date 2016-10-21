@@ -13,8 +13,6 @@ $(document).ready(function () {
     $('.modal-trigger').leanModal();
 
     $("#search_name").prop('disabled', true);
-    $("#add_close_id").prop('disabled', true);
-    $("#opened_on").prop('disabled', true);
 
     $(".use-address").click(function() {
         var $row = $(this).closest("tr");    // Find the row
@@ -24,7 +22,7 @@ $(document).ready(function () {
         var reported_date = $row.find(".reported_date").text(); // Find the text
 
         $('#add_close_id').val(id)
-        $('#opened_on').val(full_name)
+        $('#add_close_name').val(full_name)
     });
 
     $("#search_input").keyup(function(){

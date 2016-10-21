@@ -84,7 +84,7 @@
 
                             <!-- Modal Structure -->
                             <div id="modal1" class="modal modal-fixed-footer">
-                                <form action="" method="POST">
+                                <form action="{{ url_for('dashboard.list_cases') }}" method="POST">
                                     {{ form.hidden_tag() }}
 
                                     <div class="modal-content">
@@ -102,7 +102,11 @@
 
                                             <div class="row">
                                                 <div class="input-field col s6">
-                                                    <input name="opened_on" id="opened_on" type="text" class="validate">
+                                                    <!--<input name="opened_on" id="opened_on" type="text" class="validate">-->
+                                                    {{ form.add_close_name( class_="validate", **{'aria-describedby':"closeNameHelpText"} ) }}
+                                                    {% for message in form.add_close_name.errors %}
+                                                        <div class="center-align, error" id="closeNameHelpText">{{ message }}</div>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
 
@@ -147,6 +151,7 @@
                                             <li class="divider"></li>
                                         </ul>
                                     </div>
+
                                     {% for case in search_results %}
                                         <tr>
                                             <td class="id">{{ case.id }}</td>

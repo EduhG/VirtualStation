@@ -1,5 +1,6 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm, Form
 from wtforms import SubmitField, validators, StringField, RadioField, TextAreaField
+from wtforms_components import read_only
 
 from .models import ReportedCase
 
@@ -39,8 +40,14 @@ class CaseNotesForm(Form):
             return False
 
 
-class CloseCaseForm(Form):
+class CloseCaseForm(FlaskForm):
     add_close_id = StringField('Case Id', [validators.InputRequired("Case Id can not be empty.")])
+    add_close_name = StringField('Full Name', [validators.InputRequired("Case Id can not be empty.")])
     add_close_notes = TextAreaField('Description', [validators.InputRequired("Please enter notes to update.")])
 
     submit = SubmitField("Save to Close")
+
+    def __init__(self, *args, **kwargs):
+        super(CloseCaseForm, self).__init__(*args, **kwargs)
+        read_only(self.add_close_id)
+        read_only(self.add_close_name)
