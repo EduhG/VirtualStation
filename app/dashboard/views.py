@@ -231,6 +231,13 @@ def index():
                            closed_cases=get_closed_cases())
 
 
+def get_case_types():
+    case_types_list = []
+    for case_type in db.session.query(CaseTypes).all():
+        case_types_list.append(case_type.complaint)
+    return case_types_list
+
+
 @dashboard.route('/newcase', methods=['GET', 'POST'])
 @login_required
 def newcase():
@@ -256,7 +263,7 @@ def newcase():
         flash('Invalid username or password.')
         return redirect(request.args.get('next') or url_for('dashboard.newcase'))
 
-    return render_template('dashboard/new-case.html', form=form)
+    return render_template('dashboard/new-case.html', form=form, case_types=get_case_types())
 
 
 @dashboard.route('/list_cases', methods=['GET', 'POST'])
@@ -334,7 +341,6 @@ def administrator():
         db.session.commit()
 
         flash('Notes added successfully.')
-        print 'Notes added successfully.'
         return redirect(request.args.get('next') or url_for('dashboard.administrator'))
 
     return render_template('dashboard/admin_panel.html', types_form=types_form,
