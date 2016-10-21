@@ -136,6 +136,251 @@ $(document).ready(function () {
         });
 
     });
+
+
+
+    /*************************************************************************
+     * Closed Cases Pi Chart
+    *************************************************************************/
+
+    $.ajax({
+        url: "/dashboard/closed_cases_chart",
+        method: "GET",
+        success: function(data) {
+            console.log(data);
+            var player = [];
+            var score = [];
+
+            for(var i in data) {
+                player.push(data[i].complaint);
+                score.push(data[i].total_count);
+            }
+
+            var bg_colors = randomColor({luminosity: 'dark', count: player.length});
+
+            var chartdata = {
+                labels: player,
+
+                datasets : [
+                    {
+                        label: 'Player Score',
+                        backgroundColor: 'rgba(200, 200, 200, 0.75)',
+                        borderColor: 'rgba(200, 200, 200, 0.75)',
+                        data: score,
+                        backgroundColor: bg_colors,
+                        hoverBackgroundColor: bg_colors
+                    }
+                ]
+            };
+
+            var ctx = $("#newCasesPie");
+
+            var doughnutChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: chartdata,
+                options: {
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display: false
+                            }
+                    }],
+                        yAxes: [{
+                            gridLines: {
+                                display: false
+                            }
+                    }]
+                    },
+                    title: {
+                        display: false,
+                        text: 'Custom Chart Title'
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+
+    /*************************************************************************
+     * Reported Cases Pi Chart
+    *************************************************************************/
+
+    $.ajax({
+        url: "/dashboard/reported_cases_chart",
+        method: "GET",
+        success: function(data) {
+            console.log(data);
+            var player = [];
+            var score = [];
+
+            for(var i in data) {
+                player.push(data[i].complaint);
+                score.push(data[i].total_count);
+            }
+
+            var bg_colors = randomColor({luminosity: 'dark', count: player.length});
+
+            var chartdata = {
+                labels: player,
+
+                datasets : [
+                    {
+                        label: 'Player Score',
+                        backgroundColor: 'rgba(200, 200, 200, 0.75)',
+                        borderColor: 'rgba(200, 200, 200, 0.75)',
+                        data: score,
+                        backgroundColor: bg_colors,
+                        hoverBackgroundColor: bg_colors
+                    }
+                ]
+            };
+
+            var ctx = $("#closedCasesPie");
+
+            var doughnutChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: chartdata,
+                options: {
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display: false
+                            }
+                    }],
+                        yAxes: [{
+                            gridLines: {
+                                display: false
+                            }
+                    }]
+                    },
+                    title: {
+                        display: false,
+                        text: 'Custom Chart Title'
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+
+    /*************************************************************************
+     * Total Reported Cases Chart
+    *************************************************************************/
+
+    $.ajax({
+        url: "/dashboard/total_reported_cases_annually",
+        method: "GET",
+        success: function(data) {
+            console.log('Annual Data => ' + data);
+            var months = [];
+            var total = [];
+
+            for(var i in data) {
+                months.push(data[i].calendar_month);
+                total.push(data[i].month_count);
+            }
+
+            console.log('Annual Months => ' + months)
+            console.log('Month Totals => ' + total)
+
+            var config = {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: [{
+                        label: "My First dataset",
+                        data: total,
+                        fill: true,
+                        borderColor: "rgba(75,192,192,1)"
+                }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display: false
+                            }
+                        }]
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                console.log(tooltipItem)
+                                return tooltipItem.yLabel;
+                            }
+                        }
+                    }
+                }
+            };
+
+            var ctx = document.getElementById("myChart").getContext("2d");
+            new Chart(ctx, config);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+
+
+    /*************************************************************************
+     * Summary of Cases Chart
+    *************************************************************************/
+
+    $.ajax({
+        url: "/dashboard/reported_cases_chart",
+        method: "GET",
+        success: function(data) {
+            console.log(data);
+            var player = [];
+            var score = [];
+
+            for(var i in data) {
+                player.push(data[i].complaint);
+                score.push(data[i].total_count);
+            }
+
+            var bg_colors = randomColor({luminosity: 'dark', count: player.length});
+            console.log(bg_colors)
+
+            var chartdata = {
+                labels: player,
+                datasets : [
+                    {
+                        label: 'Summary of Cases',
+                        backgroundColor: bg_colors,
+                        borderColor: bg_colors,
+                        hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
+                        hoverBorderColor: 'rgba(200, 200, 200, 1)',
+                        data: score
+                    }
+                ]
+            };
+
+            var ctx = $("#mycanvas1");
+
+            var barGraph = new Chart(ctx, {
+                type: 'bar',
+                data: chartdata
+            });
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+
 });
 
 $('select').material_select();
@@ -150,233 +395,6 @@ $('.button-collapse').sideNav({
     closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
 });
 $('.collapsible').collapsible();
-
-var newCasesPie = document.getElementById("newCasesPie");
-var myPieChart = new Chart(newCasesPie, {
-    type: 'doughnut',
-    data: {
-        labels: [
-        "Red",
-        "Blue",
-        "Yellow"
-    ],
-        datasets: [
-            {
-                data: [300, 50, 100],
-                backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ],
-                hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ]
-        }]
-    },
-    options: {
-        scales: {
-            xAxes: [{
-                gridLines: {
-                    display: false
-                }
-        }],
-            yAxes: [{
-                gridLines: {
-                    display: false
-                }
-        }]
-        },
-        title: {
-            display: false,
-            text: 'Custom Chart Title'
-        },
-        legend: {
-            display: false
-        }
-    }
-});
-
-
-$.ajax({
-    url: "/dashboard/reported_cases_chart",
-    method: "GET",
-    success: function(data) {
-        console.log(data);
-        var player = [];
-        var score = [];
-
-        for(var i in data) {
-            player.push("Player " + data[i].complaint);
-            score.push(data[i].total_count);
-        }
-
-        var bg_colors = randomColor({luminosity: 'dark', count: player.length});
-
-        var chartdata = {
-            labels: player,
-
-            datasets : [
-                {
-                    label: 'Player Score',
-                    backgroundColor: 'rgba(200, 200, 200, 0.75)',
-                    borderColor: 'rgba(200, 200, 200, 0.75)',
-                    data: score,
-                    backgroundColor: bg_colors,
-                    hoverBackgroundColor: bg_colors
-                }
-            ]
-        };
-
-        var ctx = $("#closedCasesPie");
-
-        var doughnutChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: chartdata,
-            options: {
-                scales: {
-                    xAxes: [{
-                        gridLines: {
-                            display: false
-                        }
-                }],
-                    yAxes: [{
-                        gridLines: {
-                            display: false
-                        }
-                }]
-                },
-                title: {
-                    display: false,
-                    text: 'Custom Chart Title'
-                },
-                legend: {
-                    display: false
-                }
-            }
-        });
-    },
-    error: function(data) {
-        console.log(data);
-    }
-});
-
-$.ajax({
-    url: "/dashboard/reported_cases_chart",
-    method: "GET",
-    success: function(data) {
-        console.log(data);
-        var player = [];
-        var score = [];
-
-        for(var i in data) {
-            player.push("Player " + data[i].complaint);
-            score.push(data[i].total_count);
-        }
-
-        var bg_colors = randomColor({luminosity: 'dark', count: player.length});
-        console.log(bg_colors)
-
-        var chartdata = {
-            labels: player,
-            /*datasets : [
-                {
-                    label: 'Player Score',
-                    backgroundColor: bg_colors,
-                    borderColor: bg_colors,
-                    hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
-                    hoverBorderColor: 'rgba(200, 200, 200, 1)',
-                    data: score
-                }
-            ]*/
-            datasets: [
-                {
-                    type: 'bar',
-                    label: 'Bar Chart',
-                    data: score,
-                    backgroundColor: bg_colors
-                },
-                {
-                    type: 'line',
-                    label: 'Line Chart',
-                    data: score,
-                    lineTension: 0.5,
-                    borderColor: "rgba(75,192,192,1)"
-                }
-            ]
-        };
-
-        var ctx = $("#mycanvas1");
-
-        var barGraph = new Chart(ctx, {
-            type: 'bar',
-            data: chartdata
-        });
-    },
-    error: function(data) {
-        console.log(data);
-    }
-});
-
-
-$.ajax({
-    url: "/dashboard/total_reported_cases_annually",
-    method: "GET",
-    success: function(data) {
-        console.log('Annual Data => ' + data);
-        var months = [];
-        var total = [];
-
-        for(var i in data) {
-            months.push(data[i].calendar_month);
-            total.push(data[i].month_count);
-        }
-
-        console.log('Annual Months => ' + months)
-        console.log('Month Totals => ' + total)
-
-        var config = {
-            type: 'line',
-            data: {
-                labels: months,
-                datasets: [{
-                    label: "My First dataset",
-                    data: total,
-                    fill: true,
-                    borderColor: "rgba(75,192,192,1)"
-            }]
-            },
-            options: {
-                scales: {
-                    xAxes: [{
-                        gridLines: {
-                            display: false
-                        }
-                    }]
-                },
-                legend: {
-                    display: false
-                },
-                tooltips: {
-                    callbacks: {
-                        label: function (tooltipItem) {
-                            console.log(tooltipItem)
-                            return tooltipItem.yLabel;
-                        }
-                    }
-                }
-            }
-        };
-
-        var ctx = document.getElementById("myChart").getContext("2d");
-        new Chart(ctx, config);
-    },
-    error: function(data) {
-        console.log(data);
-    }
-});
-
 
 
 $("#search_input").click(function(){

@@ -1,5 +1,6 @@
 from flask import render_template, request, url_for, redirect, flash, jsonify
 from flask_login import login_required
+from sqlalchemy import and_
 from datetime import date, datetime, timedelta
 import calendar
 from flask_login import current_user
@@ -78,6 +79,27 @@ def reported_cases_chart():
         complaints = {}
 
         count = db.session.query(ReportedCase).filter_by(complaint_type=complaint.complaint).count()
+        print complaint.complaint, " => ", count
+        complaints["complaint"] = complaint.complaint
+        complaints["total_count"] = count
+
+        comps.append(complaints)
+
+    response = jsonify(comps)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+
+@dashboard.route('/closed_cases_chart')
+def closed_cases_chart():
+    comps = []
+
+    for complaint in db.session.query(CaseTypes).all():
+        complaints = {}
+
+        count = db.session.query(ReportedCase).filter_by(
+            complaint_type=complaint.complaint).filter_by(case_closed=True).count()
+        # filter(and_(ReportedCase.complaint_type == complaint.complaint, ReportedCase.case_closed == 1))
         print complaint.complaint, " => ", count
         complaints["complaint"] = complaint.complaint
         complaints["total_count"] = count
@@ -224,8 +246,6 @@ def list_cases():
         search_results.append(found)
 
     if request.method == 'POST' and form.validate():
-        print 'submitting'
-        print request.form
         search_id = request.form['add_close_id']
         close_notes = request.form['add_close_notes']
 
