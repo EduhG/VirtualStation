@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm, Form
 from wtforms import SubmitField, validators, StringField, RadioField, TextAreaField, ValidationError
 from wtforms_components import read_only
+from ..auth.models import User
 
 from .models import ReportedCase, CaseTypes
 
@@ -73,3 +74,23 @@ class CaseTypesForm(FlaskForm):
             self.cartegory_name.errors = tuple(new_errors)
 
             return False
+
+
+class CreateAccountForm(FlaskForm):
+    first_name = StringField('First Name', [validators.DataRequired("Please enter your first name.")])
+    other_names = StringField("Other Names", [validators.DataRequired("Please enter your other names.")])
+    email = StringField("Email", [validators.DataRequired("Please enter your email address."),
+                        validators.Email("Please enter your email address.")])
+
+    submit = SubmitField("Sign Up")
+
+    def __init__(self, *args, **kwargs):
+        super(CreateAccountForm, self).__init__(*args, **kwargs)
+
+    def validate(self):
+        user = User.query.filter_by(email=self.email.data.lower()).first()
+        if user:
+            self.email.errors.append("That email is already taken")
+            return False
+        else:
+            return True
