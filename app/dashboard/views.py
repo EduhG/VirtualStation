@@ -9,6 +9,7 @@ from forms import NewCaseForm, CaseNotesForm, CloseCaseForm, CaseTypesForm, Crea
 from .. import db
 from .models import ReportedCase, CaseTypes, CaseNotes
 from . import dashboard
+from ..auth.models import User
 
 now = datetime.now()
 
@@ -331,7 +332,11 @@ def administrator():
     account_form = CreateAccountForm()
     types_form = CaseTypesForm()
 
-    if types_form.validate_on_submit() and types_form.validate():
+    print types_form.submit1.data
+
+    if types_form.submit1.data and types_form.validate_on_submit() and types_form.validate():
+        print 'types form'
+
         cartegory_name = request.form['cartegory_name']
 
         print 'cartegory => ', cartegory_name
@@ -341,6 +346,16 @@ def administrator():
         db.session.commit()
 
         flash('Notes added successfully.')
+        return redirect(request.args.get('next') or url_for('dashboard.administrator'))
+
+    if account_form.validate_on_submit() and account_form.validate():
+        print 'account_form'
+
+        user = User(email=account_form.email.data,
+                    username=account_form.first_name.data,
+                    password='Password01')
+        db.session.add(user)
+        flash('You can now login.')
         return redirect(request.args.get('next') or url_for('dashboard.administrator'))
 
     return render_template('dashboard/admin_panel.html', types_form=types_form,

@@ -57,7 +57,7 @@ class CloseCaseForm(FlaskForm):
 class CaseTypesForm(FlaskForm):
     cartegory_name = StringField("Cartegory Name", [validators.InputRequired("Please enter Ref Id to search.")])
 
-    submit = SubmitField("Save Cartegory")
+    submit1 = SubmitField("Save Cartegory")
 
     def __init__(self, *args, **kwargs):
         super(CaseTypesForm, self).__init__(*args, **kwargs)
@@ -82,7 +82,7 @@ class CreateAccountForm(FlaskForm):
     email = StringField("Email", [validators.DataRequired("Please enter your email address."),
                         validators.Email("Please enter your email address.")])
 
-    submit = SubmitField("Save Details")
+    submit2 = SubmitField("Save Details")
 
     def __init__(self, *args, **kwargs):
         super(CreateAccountForm, self).__init__(*args, **kwargs)
