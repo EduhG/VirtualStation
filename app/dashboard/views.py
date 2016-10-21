@@ -321,4 +321,4 @@ def notes():
 @dashboard.route('/administrator')
 @login_required
 def administrator():
-    return render_template('dashboard/list-cases.html')
+    return render_template('dashboard/admin_panel.html')
