@@ -86,7 +86,7 @@
 
                         <div class="row">
                             <form class="col s12" action="" method="POST">
-                                {{ form.hidden_tag() }}
+                                {{ types_form.hidden_tag() }}
 
                                 <div>
                                     <div class="row" style="margin:0">
@@ -198,24 +198,44 @@
 
                         <div class="row">
                             <form class="col s12" action="" method="POST">
-                                {{ form.hidden_tag() }}
+                                {{ account_form.hidden_tag() }}
 
                                 <div>
                                     <div class="row" style="margin:0">
                                         <div class="input-field col s6">
-                                            {{ form.add_search_id( class_="validate", **{'aria-describedby':"add_search_idHelpText"} ) }}
-                                            <label for="add_search_id">First Name</label>
-                                            {% for message in form.add_search_id.errors %}
-                                            <div class="center-align, error" id="add_search_idHelpText">{{ message }}</div>
+                                            {{ account_form.first_name( class_="validate", **{'aria-describedby':"firstNameHelpText"} ) }}
+                                            <label for="first_name">First Name</label>
+                                            {% for message in account_form.first_name.errors %}
+                                            <div class="center-align, error" id="firstNameHelpText">{{ message }}</div>
                                             {% endfor %}
                                         </div>
                                         <div class="input-field col s6">
-
-                                            {{ form.add_search_id( class_="validate", **{'aria-describedby':"add_search_idHelpText"} ) }}
-                                            <label for="add_search_id">Other Names</label>
-                                            {% for message in form.add_search_id.errors %}
-                                            <div class="center-align, error" id="add_search_idHelpText">{{ message }}</div>
+                                            {{ account_form.other_names( class_="validate", **{'aria-describedby':"otherNamesHelpText"} ) }}
+                                            <label for="other_names">Other Names</label>
+                                            {% for message in account_form.other_names.errors %}
+                                            <div class="center-align, error" id="otherNamesHelpText">{{ message }}</div>
                                             {% endfor %}
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin:0">
+                                        <div class="input-field col s12">
+                                            {{ account_form.email( class_="validate", **{'aria-describedby':"emailHelpText"} ) }}
+                                            <label for="first_name">Email</label>
+                                            {% for message in account_form.email.errors %}
+                                            <div class="center-align, error" id="emailHelpText">{{ message }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin:0">
+                                        <div class="input-field col s12">
+                                            <select name="account_type">
+                                                <option value="" disabled selected>Account Type</option>
+                                                <option value="User">User</option>
+                                                <option value="Privileged">Privileged</option>
+                                                <option value="Administrator">Administrator</option>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -223,8 +243,7 @@
                                         <div class="col s12 right-align" style="padding: 0px;">
                                             <div class="divider"></div>
                                             <div style="padding: 10px;">
-                                                <a class="waves-effect waves-light btn-large">Cancel</a>
-                                                {{ form.submit(class_="waves-effect waves-light btn-large") }}
+                                                {{ account_form.submit(class_="waves-effect waves-light btn") }}
                                             </div>
                                         </div>
                                     </div>
@@ -245,6 +264,7 @@
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="../../static/plugins/materialize/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../static/js/app.js"></script>
 </body>
 
 </html>

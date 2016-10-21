@@ -82,7 +82,7 @@ class CreateAccountForm(FlaskForm):
     email = StringField("Email", [validators.DataRequired("Please enter your email address."),
                         validators.Email("Please enter your email address.")])
 
-    submit = SubmitField("Sign Up")
+    submit = SubmitField("Save Details")
 
     def __init__(self, *args, **kwargs):
         super(CreateAccountForm, self).__init__(*args, **kwargs)
