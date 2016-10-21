@@ -5,7 +5,7 @@ from datetime import date, datetime, timedelta
 import calendar
 from flask_login import current_user
 from ..utils.custom_calendar import months_days, str_to_date
-from forms import NewCaseForm, CaseNotesForm, CloseCaseForm
+from forms import NewCaseForm, CaseNotesForm, CloseCaseForm, CaseTypesForm
 from .. import db
 from .models import ReportedCase, CaseTypes, CaseNotes
 from . import dashboard
@@ -321,4 +321,8 @@ def notes():
 @dashboard.route('/administrator')
 @login_required
 def administrator():
-    return render_template('dashboard/admin_panel.html')
+    form = CaseNotesForm()
+    case_types = CaseTypesForm()
+
+    return render_template('dashboard/admin_panel.html', case_types=case_types,
+                           form=form, complaints=get_complaint_type_count())

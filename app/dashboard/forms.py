@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm, Form
-from wtforms import SubmitField, validators, StringField, RadioField, TextAreaField
+from wtforms import SubmitField, validators, StringField, RadioField, TextAreaField, ValidationError
 from wtforms_components import read_only
 
-from .models import ReportedCase
+from .models import ReportedCase, CaseTypes
 
 
 class NewCaseForm(Form):
@@ -51,3 +51,22 @@ class CloseCaseForm(FlaskForm):
         super(CloseCaseForm, self).__init__(*args, **kwargs)
         read_only(self.add_close_id)
         read_only(self.add_close_name)
+
+
+class CaseTypesForm(FlaskForm):
+    cartegory_name = StringField("Cartegory Name", [validators.InputRequired("Please enter Ref Id to search.")])
+
+    submit = SubmitField("Save Cartegory")
+
+    def __init__(self, *args, **kwargs):
+        super(CaseTypesForm, self).__init__(*args, **kwargs)
+
+    def validate(self):
+
+        cartegory = CaseTypes.query.filter_by(complaint=self.cartegory_name.data).first()
+
+        if cartegory and len(self.cartegory_name.data) > 10:
+            return True
+        else:
+            raise ValidationError('Cartegory already exists')
+            return False
