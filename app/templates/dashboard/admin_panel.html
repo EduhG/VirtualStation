@@ -67,7 +67,7 @@
                     <div class="card-content" style="min-height: 430px; padding:0">
                         <div style="padding: 10px; font-size: 30px" class="teal white-text">Case Types</div>
 
-                        <ul id="task-card" class="collection with-header" style="margin:0; border-left:none; border-right:none">
+                        <ul id="task-card" class="collection with-header" style="margin:0; border-left:none; border-right:none; border-radius: 0px">
 
                             {% for k, v in complaints.iteritems() %}
                             <li class="collection-item dismissable" style="padding: 20px !important">
@@ -146,34 +146,70 @@
             <div class="col l7 m7 s12">
                 <div class="card">
                     <div class="card-content" style="min-height: 430px; padding:0">
-                        <div style="padding: 10px; font-size: 30px" class="teal white-text">Case Types</div>
+                        <div style="padding: 10px; font-size: 30px" class="teal white-text">System Users</div>
 
-                        <div>
-                            <form class="col s12" action="" method="POST">
-                                <div>
-                                    <div class="row" style="margin:0">
-                                        <div class="input-field col s6"></div>
-                                        <div class="input-field col s6">
-                                            <input name="search_input" id="search_input" type="text" class="validate">
-                                            <label for="search_input">Ref Number</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="row" style="margin:0">
-                                        <div class="input-field col s6"></div>
-                                        <div class="input-field col s6">
-                                            <input name="search_name" id="search_name" type="text" class="validate">
-                                            <!--<label for="search_name">Opened On</label>-->
-                                        </div>
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <div class="row" style="margin:0">
+                                    <div class="input-field col s6"></div>
+                                    <div class="input-field col s6">
+                                        <input name="search_input" id="search_input" type="text" class="validate">
+                                        <label for="search_input">Ref Number</label>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div id="result">
+
+                                <div class="row" style="margin:0">
+                                    <div class="input-field col s6"></div>
+                                    <div class="input-field col s6">
+                                        <input name="search_name" id="search_name" type="text" class="validate">
+                                        <!--<label for="search_name">Opened On</label>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 m12 l12">
+                                <table class="bordered" style="border: 1px solid #ddd">
+                                    <thead class="teal white-text">
+                                        <tr>
+                                            <th data-field="id" style="border-radius: 0 !important">ID</th>
+                                            <th data-field="id_number" style="border-radius: 0 !important">ID Number</th>
+                                            <th data-field="names" style="border-radius: 0 !important">Full Name</th>
+                                            <th data-field="reported_date" style="border-radius: 0 !important">Date Reported</th>
+                                            <th data-field="complaint type" style="border-radius: 0 !important">Complaint Type</th>
+                                            <th data-field="tbl_actions" style="border-radius: 0 !important">Actions</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="tbl_body">
+                                        <div>
+                                            <ul id="table_actions" class="dropdown-content" style="width: auto !important;">
+                                                <li style="width: auto !important;"><a href="{{ url_for('dashboard.notes') }}">Add Notes</a></li>
+                                                <li class="divider"></li>
+                                                <li><a class="modal-trigger use-address" href="#modal1">Close Case</a></li>
+                                                <li class="divider"></li>
+                                            </ul>
+                                        </div>
+
+                                        {% for case in search_results %}
+                                        <tr>
+                                            <td class="id">{{ case.id }}</td>
+                                            <td class="">{{ case.id_number }}</td>
+                                            <td class="full_name">{{ case.full_name }}</td>
+                                            <td class="reported_date">{{ case.reported_date }}</td>
+                                            <td>{{ case.complaint_type }}</td>
+                                            <td style="width: 180px">
+                                                <div>
+                                                    <a class="dropdown-button" href="" data-activates="table_actions" style="width: 180px !important;">More Options&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <i class="material-icons right">arrow_drop_down</i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
 
                         </div>
-
-
                     </div>
 
                     <div class="card-reveal" style="padding: 0">
