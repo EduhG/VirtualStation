@@ -59,6 +59,7 @@ def get_reported_cases():
 
     diff = current_month_count - last_month_count
     total = current_month_count + last_month_count
+
     if diff > 0:
         change = (diff * 100) / total
     else:
@@ -66,7 +67,38 @@ def get_reported_cases():
 
     reported_cases_summary["change"] = change
 
-    print reported_cases_summary
+    return reported_cases_summary
+
+
+def get_closed_cases():
+    reported_cases_summary = {}
+
+    dt = datetime.strptime(datetime.now().date().strftime('%Y-%m-%d'), '%Y-%m-%d')
+    c_date = date.today()
+    start_date = datetime(c_date.year, c_date.month, 1)
+    end_date = datetime(c_date.year, c_date.month, calendar.mdays[c_date.month])
+
+    current_month_count = db.session.query(ReportedCase).filter(
+        ReportedCase.reported_date.between(start_date, end_date)).count()
+
+    reported_cases_summary["current_month"] = current_month_count
+
+    last_month_count = db.session.query(ReportedCase).filter(
+        ReportedCase.reported_date.between(
+            first_day_of_month(a_day_in_previous_month(dt)), a_day_in_previous_month(dt)))\
+        .filter_by(case_closed=True).count()
+
+    reported_cases_summary["last_month"] = last_month_count
+
+    diff = current_month_count - last_month_count
+    total = current_month_count + last_month_count
+
+    if diff > 0:
+        change = (diff * 100) / total
+    else:
+        change = 0
+
+    reported_cases_summary["change"] = change
 
     return reported_cases_summary
 
@@ -79,7 +111,6 @@ def reported_cases_chart():
         complaints = {}
 
         count = db.session.query(ReportedCase).filter_by(complaint_type=complaint.complaint).count()
-        print complaint.complaint, " => ", count
         complaints["complaint"] = complaint.complaint
         complaints["total_count"] = count
 
@@ -197,7 +228,8 @@ def current_date():
 @login_required
 def index():
     return render_template('dashboard/dashboard.html', complaints=get_complaint_type_count(),
-                           current_date=current_date(), reported_cases=get_reported_cases())
+                           current_date=current_date(), reported_cases=get_reported_cases(),
+                           closed_cases=get_closed_cases())
 
 
 @dashboard.route('/newcase', methods=['GET', 'POST'])

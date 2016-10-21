@@ -148,8 +148,8 @@
                         <div class="row" style="padding: 0; margin: 0">
                             <div class="col s12 m6 l6 pink lighten-1 white-text center-align" style="padding: 20px">
                                 <p class="card-stats-title"><i class="mdi-editor-insert-drive-file"></i> Closed Cases</p>
-                                <h4 class="card-stats-number">18</h4>
-                                <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-down"></i> 3% <span class="deep-purple-text text-lighten-5">from last month</span>
+                                <h4 class="card-stats-number">{{ closed_cases["current_month"] }}</h4>
+                                <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-down"></i> {{ closed_cases["change"] }}% <span class="deep-purple-text text-lighten-5">from last month</span>
                                 </p>
                             </div>
                             <div class="col s12 m6 l6">
