@@ -173,7 +173,7 @@ $(document).ready(function () {
                 ]
             };
 
-            var ctx = $("#newCasesPie");
+            var ctx = $("#closedCasesPie");
 
             var doughnutChart = new Chart(ctx, {
                 type: 'doughnut',
@@ -240,7 +240,7 @@ $(document).ready(function () {
                 ]
             };
 
-            var ctx = $("#closedCasesPie");
+            var ctx = $("#newCasesPie");
 
             var doughnutChart = new Chart(ctx, {
                 type: 'doughnut',

@@ -78,15 +78,14 @@ def get_closed_cases():
     start_date = datetime(c_date.year, c_date.month, 1)
     end_date = datetime(c_date.year, c_date.month, calendar.mdays[c_date.month])
 
-    current_month_count = db.session.query(ReportedCase).filter(
+    current_month_count = db.session.query(ReportedCase).filter_by(case_closed=True).filter(
         ReportedCase.reported_date.between(start_date, end_date)).count()
 
     reported_cases_summary["current_month"] = current_month_count
 
-    last_month_count = db.session.query(ReportedCase).filter(
+    last_month_count = db.session.query(ReportedCase).filter_by(case_closed=True).filter(
         ReportedCase.reported_date.between(
-            first_day_of_month(a_day_in_previous_month(dt)), a_day_in_previous_month(dt)))\
-        .filter_by(case_closed=True).count()
+            first_day_of_month(a_day_in_previous_month(dt)), a_day_in_previous_month(dt))).count()
 
     reported_cases_summary["last_month"] = last_month_count
 
@@ -129,7 +128,7 @@ def closed_cases_chart():
         complaints = {}
 
         count = db.session.query(ReportedCase).filter_by(
-            complaint_type=complaint.complaint).filter_by(case_closed=True).count()
+            complaint_type=complaint.complaint).filter(ReportedCase.case_closed == 1).count()
         # filter(and_(ReportedCase.complaint_type == complaint.complaint, ReportedCase.case_closed == 1))
         print complaint.complaint, " => ", count
         complaints["complaint"] = complaint.complaint
