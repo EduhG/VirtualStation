@@ -92,9 +92,9 @@
                                     <div class="row" style="margin:0">
                                         <div class="input-field col s12">
 
-                                            {{ case_types.cartegory_name( class_="validate", **{'aria-describedby':"cartegory_nameHelpText"} ) }}
+                                            {{ types_form.cartegory_name( class_="validate", **{'aria-describedby':"cartegory_nameHelpText"} ) }}
                                             <label for="cartegory_name">Cartegory</label>
-                                            {% for message in case_types.cartegory_name.errors %}
+                                            {% for message in types_form.cartegory_name.errors %}
                                             <div class="center-align, error" id="cartegory_nameHelpText">{{ message }}</div>
                                             {% endfor %}
                                         </div>
@@ -105,7 +105,7 @@
 
                                             <div class="divider"></div>
                                             <div style="padding: 10px;">
-                                                {{ form.submit(class_="waves-effect waves-light btn") }}
+                                                {{ types_form.submit(class_="waves-effect waves-light btn") }}
                                             </div>
 
                                         </div>

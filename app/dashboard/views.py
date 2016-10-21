@@ -318,11 +318,24 @@ def notes():
     return render_template('dashboard/notes.html', form=form)
 
 
-@dashboard.route('/administrator')
+@dashboard.route('/administrator', methods=['GET', 'POST'])
 @login_required
 def administrator():
     form = CaseNotesForm()
-    case_types = CaseTypesForm()
+    types_form = CaseTypesForm()
 
-    return render_template('dashboard/admin_panel.html', case_types=case_types,
+    if types_form.validate_on_submit() and types_form.validate():
+        cartegory_name = request.form['cartegory_name']
+
+        print 'cartegory => ', cartegory_name
+
+        case_types = CaseTypes(cartegory_name)
+        db.session.add(case_types)
+        db.session.commit()
+
+        flash('Notes added successfully.')
+        print 'Notes added successfully.'
+        return redirect(request.args.get('next') or url_for('dashboard.administrator'))
+
+    return render_template('dashboard/admin_panel.html', types_form=types_form,
                            form=form, complaints=get_complaint_type_count())

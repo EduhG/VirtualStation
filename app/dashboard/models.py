@@ -43,7 +43,7 @@ class CaseTypes(db.Model):
     complaint = db.Column(db.String(100), unique=True)
 
     def __init__(self, complaint):
-        self.id_method = complaint
+        self.complaint = complaint
 
 
 class CaseNotes(db.Model):

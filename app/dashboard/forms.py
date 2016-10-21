@@ -65,8 +65,11 @@ class CaseTypesForm(FlaskForm):
 
         cartegory = CaseTypes.query.filter_by(complaint=self.cartegory_name.data).first()
 
-        if cartegory and len(self.cartegory_name.data) > 10:
+        if not cartegory:
             return True
         else:
-            raise ValidationError('Cartegory already exists')
+            new_errors = list(self.cartegory_name.errors)
+            new_errors.append("Cartegory already exists")
+            self.cartegory_name.errors = tuple(new_errors)
+
             return False
