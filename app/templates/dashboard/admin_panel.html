@@ -67,32 +67,16 @@
                     <div class="card-content" style="min-height: 430px; padding:0">
                         <div style="padding: 10px; font-size: 30px" class="teal white-text">Case Types</div>
 
-                        <div>
-                            <form class="col s12" action="" method="POST">
-                                <div>
-                                    <div class="row" style="margin:0">
-                                        <div class="input-field col s6"></div>
-                                        <div class="input-field col s6">
-                                            <input name="search_input" id="search_input" type="text" class="validate">
-                                            <label for="search_input">Ref Number</label>
-                                        </div>
-                                    </div>
+                        <ul id="task-card" class="collection with-header" style="margin:0; border-left:none; border-right:none">
 
-                                    <div class="row" style="margin:0">
-                                        <div class="input-field col s6"></div>
-                                        <div class="input-field col s6">
-                                            <input name="search_name" id="search_name" type="text" class="validate">
-                                            <!--<label for="search_name">Opened On</label>-->
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div id="result">
+                            {% for k, v in complaints.iteritems() %}
+                            <li class="collection-item dismissable" style="padding: 20px !important">
+                                <label>{{ k }}. <a href="#" class="secondary-content"><span class="ultra-small">{{ v }}</span></a>
+                                </label>
+                            </li>
+                            {% endfor %}
 
-                        </div>
-
-
+                        </ul>
                     </div>
 
                     <div class="card-reveal" style="padding: 0">
