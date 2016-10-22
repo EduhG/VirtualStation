@@ -6,3 +6,8 @@ from . import home
 def index():
     return render_template('index.html')
 
+
+@home.route('/mycases')
+def my_cases():
+    return render_template('mycases.html')
+
