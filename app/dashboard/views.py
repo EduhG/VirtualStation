@@ -4,6 +4,7 @@ from sqlalchemy import and_
 from datetime import date, datetime, timedelta
 import calendar
 from flask_login import current_user
+from ..utils.username import generate_username
 from ..utils.custom_calendar import months_days, str_to_date
 from forms import NewCaseForm, CaseNotesForm, CloseCaseForm, CaseTypesForm, CreateAccountForm
 from .. import db
@@ -349,12 +350,19 @@ def administrator():
         return redirect(request.args.get('next') or url_for('dashboard.administrator'))
 
     if account_form.validate_on_submit() and account_form.validate():
-        print 'account_form'
+        print 'account_form', request.form.get('account_type')
+        first = account_form.first_name.data
+        last = account_form.other_names.data
+
+        print generate_username(first, last)
 
         user = User(email=account_form.email.data,
-                    username=account_form.first_name.data,
+                    username=generate_username(first, last),
+                    first_name=account_form.first_name.data,
+                    other_names=account_form.other_names.data,
+                    role_id=int(request.form.get('account_type')),
                     password='Password01')
-        db.session.add(user)
+        #db.session.add(user)
         flash('You can now login.')
         return redirect(request.args.get('next') or url_for('dashboard.administrator'))
 
