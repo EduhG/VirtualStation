@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Signup / Registration form using Material Design - Demo by W3lessons</title>
+    <!-- CORE CSS-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+    <!--    <link rel="stylesheet" href="../../static/plugins/materialize/css/materialize.min.css">-->
+
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+        }
+
+        html {
+            display: table;
+            margin: auto;
+        }
+
+        body {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .margin {
+            margin: 0 !important;
+        }
+
+        .error {
+            margin-top: -10px !important;
+            font-size: 12px;
+            padding-left: 45px;
+            color: red;
+            font-style: italic;
+        }
+
+        #submit {
+            width:100%;
+            margin: 0;
+            background: transparent;
+            border: none;
+            height: 100%;
+            outline:none;
+            font-style: normal;
+        }
+
+    </style>
+
+</head>
+
+<body class="blue">
+
+
+    <div id="login-page" class="row">
+        <div class="col s12 z-depth-6 card-panel">
+            <form class="login-form" action="" method=post autocomplete="off">
+                {{ form.hidden_tag() }}
+
+                <div class="row">
+                    <div class="input-field col s12 center">
+                        <img src="../../static/images/raspberry-pi-logo.png" alt="" class="responsive-img valign profile-image-login" width="100" style="padding-top: 30px">
+                        <p class="center login-form-text">Raspberry Pi - Signup</p>
+                    </div>
+                </div>
+
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-social-person-outline prefix"></i>
+                        {{ form.username(class_="validate", **{'aria-describedby':"usernameHelpText"} ) }}
+                        <label for="username" data-error="" data-success="" class="center-align">Username</label>
+                        {% for message in form.username.errors %}
+                            <div class="center-align, error" id="usernameHelpText">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-communication-email prefix"></i>
+                        {{ form.email( class_="validate", **{'aria-describedby':"emailHelpText"} ) }}
+                        <label for="email" data-error="wrong" data-success="right" class="center-align">Email</label>
+                        {% for message in form.email.errors %}
+                            <div class="center-align, error" id="emailHelpText">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-action-lock-outline prefix"></i>
+                        {{ form.password( class_="validate", **{'aria-describedby':"passwordHelpText"} ) }}
+                        <label for="password">Password</label>
+                        {% for message in form.password.errors %}
+                            <div class="center-align, error" id="passwordHelpText">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-action-lock-outline prefix"></i>
+                        {{ form.password_again( **{'aria-describedby':"passwordAgainHelpText"} ) }}
+                        <label for="password_again">Re-type password</label>
+                        {% for message in form.password.errors %}
+                            <div class="center-align, error" id="passwordAgainHelpText">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form.submit(class_="btn waves-effect waves-light col s12") }}
+                    </div>
+                    <div class="input-field col s12">
+                        <p class="margin center medium-small sign-up">Already have an account? <a href="{{ url_for('auth.signin') }}">Login</a></p>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+
+    <!-- ================================================
+    Scripts
+    ================================================ -->
+
+    <!-- jQuery Library -->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!--materialize js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+
+</body>
+
+</html>
