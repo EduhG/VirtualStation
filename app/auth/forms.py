@@ -1,5 +1,6 @@
 from flask_wtf import Form
-from wtforms import SubmitField, validators, PasswordField, StringField, BooleanField
+from wtforms import SubmitField, validators, PasswordField, StringField, BooleanField, ValidationError
+from .models import User
 
 
 class SigninForm(Form):
@@ -20,3 +21,12 @@ class SignupForm(Form):
     password_again = PasswordField('Confirm Password', [validators.DataRequired("Please enter a password.")])
 
     submit = SubmitField("Create Account")
+
+    def validate_email(self, field):
+        if User.query.filter_by(email=field.data).first():
+            raise ValidationError('Email already registered.')
+
+    def validate_username(self, field):
+        if User.query.filter_by(username=field.data).first():
+            raise ValidationError('Username already in use.')
+
