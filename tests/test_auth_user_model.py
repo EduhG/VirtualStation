@@ -1,6 +1,6 @@
 import unittest
 from app import create_app, db
-from app.auth.models import User
+from app.auth.models import User, Role, Permission
 
 
 class UserModelTestCase(unittest.TestCase):
@@ -37,3 +37,12 @@ class UserModelTestCase(unittest.TestCase):
         user = User(password='password')
         user2 = User(password='password')
         self.assertTrue(user.password_hash != user2.password_hash)
+
+    # tests for roles and permissions
+    def test_roles_and_permissions(self):
+        Role.insert_roles()
+
+        u = User(email='example@example.com', password='password')
+        self.assertTrue(u.can(Permission.CHECK_STATUS))
+        self.assertFalse(u.can(Permission.MODERATE))
+
