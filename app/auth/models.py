@@ -3,6 +3,12 @@ from flask_login import UserMixin
 from .. import db, login_manager
 
 
+class Permission:
+    CHECK_STATUS = 0x01
+    MODERATE = 0x04
+    ADMINISTER = 0x80
+
+
 class Role(db.Model):
     __tablename__ = 'roles'
     id = db.Column(db.Integer, primary_key=True)
