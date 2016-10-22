@@ -5,157 +5,146 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Virtual Station - Signup</title>
+    <title>Virtual Station</title>
     <!-- CORE CSS-->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
-    <!--    <link rel="stylesheet" href="../../static/plugins/materialize/css/materialize.min.css">-->
 
-    <style type="text/css">
-        html,
-        body {
-            height: 100%;
-        }
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        html {
-            display: table;
-            margin: auto;
-        }
+    <link rel="stylesheet" href="../../static/plugins/materialize/css/materialize.min.css">
 
-        body {
-            display: table-cell;
-            vertical-align: middle;
-        }
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 
-        .margin {
-            margin: 0 !important;
-        }
-
-        .error {
-            margin-top: -10px !important;
-            font-size: 12px;
-            padding-left: 45px;
-            color: red;
-            font-style: italic;
-        }
-
-        #submit {
-            width:100%;
-            margin: 0;
-            background: transparent;
-            border: none;
-            height: 100%;
-            outline:none;
-            font-style: normal;
-        }
-
-    </style>
+    <link rel="stylesheet" href="../../static/css/app.css">
 
 </head>
 
-<body class="blue">
+<body class="">
+    <div class="row header" style="margin: 0px !important; padding: 0px !impotant">
+        <div class="header-container">
+            <div class="row" style="margin:0">
+                <ul id="dropdown1" class="dropdown-content">
+                    <li style="width: 200px !important;"><a href="../../templates/dashboard/new-case.html">Open New Case</a></li>
+                    <li><a href="../../templates/dashboard/list-cases.html">List Open Cases</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#!">Search Cases</a></li>
+                </ul>
 
+                <nav class="z-depth-0 white-text" style="position: relative !important; z-index:10000 !important; background: transparent !important;">
+                    <div class="nav-wrapper" style="padding-left:30px; padding-right:30px">
+                        <a id="logo-container" href="#" class="brand-logo">Virtual Station</a>
+                        <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                        <ul class="right hide-on-med-and-down">
+                            <li><a href="{{ url_for('home.index') }}">Home</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
 
-    <div id="login-page" class="row">
-        <div class="col s12 z-depth-6 card-panel">
-            <form class="login-form" action="" method=post autocomplete="off">
-                {{ form.hidden_tag() }}
+            <div class="row form-content valign-wrapper">
+                <div class="left-align" style="width: 100%">
+                    <div id="login-page" class="row" style="width:400px; padding-top: 20px">
+                        <div class="col s12 z-depth-6 card-panel">
+                            <form class="login-form" action="" method=post autocomplete="off">
+                                {{ form.hidden_tag() }}
 
-                <div class="row">
-                    <div class="input-field col s12 center">
-                        <p class="center login-form-text">Virtual Station - Signup</p>
+                                <div class="row">
+                                    <div class="input-field col s12 center">
+                                        <p class="center login-form-text">Virtual Station - Signup</p>
+                                    </div>
+                                </div>
+
+                                <div class="row margin left-align" style="margin: 0px !important">
+                                    <div class="input-field col s12">
+                                        <i class="mdi-social-person-outline prefix"></i> {{ form.first_name(class_="validate", **{'aria-describedby':"firstNameHelpText"} ) }}
+                                        <label for="first_name" data-error="" data-success="" class="left-align">First Name</label>
+                                        {% for message in form.first_name.errors %}
+                                        <div class="left-align, error" id="firstNameHelpText">{{ message }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                                <div class="row margin" style="margin: 0px !important">
+                                    <div class="input-field col s12">
+                                        <i class="mdi-social-person-outline prefix"></i> {{ form.other_names(class_="validate", **{'aria-describedby':"otherNamesHelpText"} ) }}
+                                        <label for="other_names" data-error="" data-success="" class="left-align">Other Names</label>
+                                        {% for message in form.other_names.errors %}
+                                        <div class="left-align, error" id="otherNamesHelpText">{{ message }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                                <div class="row margin" style="margin: 0px !important">
+                                    <div class="input-field col s12">
+                                        <i class="mdi-communication-email prefix"></i> {{ form.email( class_="validate", **{'aria-describedby':"emailHelpText"} ) }}
+                                        <label for="email" data-error="wrong" data-success="right" class="left-align">Email</label>
+                                        {% for message in form.email.errors %}
+                                        <div class="left-align, error" id="emailHelpText">{{ message }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                                <div class="row margin" style="margin: 0px !important">
+                                    <div class="input-field col s12">
+                                        <i class="mdi-social-person-outline prefix"></i> {{ form.username(class_="validate", **{'aria-describedby':"usernameHelpText"} ) }}
+                                        <label for="username" data-error="" data-success="" class="left-align">Username</label>
+                                        {% for message in form.username.errors %}
+                                        <div class="left-align, error" id="usernameHelpText">{{ message }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                                <div class="row margin" style="margin: 0px !important">
+                                    <div class="input-field col s12">
+                                        <i class="mdi-action-lock-outline prefix"></i> {{ form.password( class_="validate", **{'aria-describedby':"passwordHelpText"} ) }}
+                                        <label for="password">Password</label>
+                                        {% for message in form.password.errors %}
+                                        <div class="left-align, error" id="passwordHelpText">{{ message }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                                <div class="row margin" style="margin: 0px !important">
+                                    <div class="input-field col s12">
+                                        <i class="mdi-action-lock-outline prefix"></i> {{ form.password_again( **{'aria-describedby':"passwordAgainHelpText"} ) }}
+                                        <label for="password_again">Re-type password</label>
+                                        {% for message in form.password.errors %}
+                                        <div class="left-align, error" id="passwordAgainHelpText">{{ message }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        {{ form.submit(class_="btn waves-effect waves-light col s12") }}
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <p class="margin center medium-small sign-up">Already have an account? <a href="{{ url_for('auth.signin') }}">Signin</a></p>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
                     </div>
                 </div>
-
-                <div class="row margin">
-                    <div class="input-field col s12">
-                        <i class="mdi-social-person-outline prefix"></i>
-                        {{ form.first_name(class_="validate", **{'aria-describedby':"firstNameHelpText"} ) }}
-                        <label for="first_name" data-error="" data-success="" class="center-align">First Name</label>
-                        {% for message in form.first_name.errors %}
-                            <div class="center-align, error" id="firstNameHelpText">{{ message }}</div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <div class="row margin">
-                    <div class="input-field col s12">
-                        <i class="mdi-social-person-outline prefix"></i>
-                        {{ form.other_names(class_="validate", **{'aria-describedby':"otherNamesHelpText"} ) }}
-                        <label for="other_names" data-error="" data-success="" class="center-align">Other Names</label>
-                        {% for message in form.other_names.errors %}
-                            <div class="center-align, error" id="otherNamesHelpText">{{ message }}</div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <div class="row margin">
-                    <div class="input-field col s12">
-                        <i class="mdi-communication-email prefix"></i>
-                        {{ form.email( class_="validate", **{'aria-describedby':"emailHelpText"} ) }}
-                        <label for="email" data-error="wrong" data-success="right" class="center-align">Email</label>
-                        {% for message in form.email.errors %}
-                            <div class="center-align, error" id="emailHelpText">{{ message }}</div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <div class="row margin">
-                    <div class="input-field col s12">
-                        <i class="mdi-social-person-outline prefix"></i>
-                        {{ form.username(class_="validate", **{'aria-describedby':"usernameHelpText"} ) }}
-                        <label for="username" data-error="" data-success="" class="center-align">Username</label>
-                        {% for message in form.username.errors %}
-                            <div class="center-align, error" id="usernameHelpText">{{ message }}</div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <div class="row margin">
-                    <div class="input-field col s12">
-                        <i class="mdi-action-lock-outline prefix"></i>
-                        {{ form.password( class_="validate", **{'aria-describedby':"passwordHelpText"} ) }}
-                        <label for="password">Password</label>
-                        {% for message in form.password.errors %}
-                            <div class="center-align, error" id="passwordHelpText">{{ message }}</div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <div class="row margin">
-                    <div class="input-field col s12">
-                        <i class="mdi-action-lock-outline prefix"></i>
-                        {{ form.password_again( **{'aria-describedby':"passwordAgainHelpText"} ) }}
-                        <label for="password_again">Re-type password</label>
-                        {% for message in form.password.errors %}
-                            <div class="center-align, error" id="passwordAgainHelpText">{{ message }}</div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s12">
-                        {{ form.submit(class_="btn waves-effect waves-light col s12") }}
-                    </div>
-                    <div class="input-field col s12">
-                        <p class="margin center medium-small sign-up">Already have an account? <a href="{{ url_for('auth.signin') }}">Signin</a></p>
-                    </div>
-                </div>
-
-            </form>
-
+            </div>
         </div>
+
     </div>
 
 
     <!-- ================================================
     Scripts
-    ================================================ -->
+    ================================================= -->
 
     <!-- jQuery Library -->
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!--materialize js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+
+    <script src="../../static/plugins/materialize/js/materialize.min.js"></script>
 
 </body>
 
