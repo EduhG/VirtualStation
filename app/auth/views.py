@@ -1,7 +1,8 @@
 from flask import render_template, request, session, url_for, redirect, flash
 from flask_login import logout_user, login_required, login_user
-from forms import SigninForm
+from forms import SigninForm, SignupForm
 from .models import User
+from .. import db
 from . import auth
 
 
@@ -18,6 +19,23 @@ def signin():
     return render_template('auth/signin.html', form=form)
 
 
+@auth.route('/signup', methods=['GET', 'POST'])
+def signup():
+    form = SignupForm()
+    if form.validate_on_submit():
+        user = User(email=form.email.data,
+                    username=form.username.data,
+                    first_name=form.first_name.data,
+                    other_names=form.other_names.data,
+                    password=form.password.data)
+        db.session.add(user)
+        db.session.commit()
+
+        flash('Your account has been created successfully.')
+        return redirect(url_for('auth.signin'))
+    return render_template('auth/signup.html', form=form)
+
+
 @auth.route('/signout')
 @login_required
 def signout():
@@ -25,16 +43,3 @@ def signout():
     flash('You have been logged out.')
     return redirect(url_for('home.index'))
 
-
-@auth.route('/create_account', methods=['GET', 'POST'])
-def create_account():
-    form = RegistrationForm()
-
-    if form.validate_on_submit():
-        user = User(email=form.email.data,
-                    username=form.username.data,
-                    password=form.password.data)
-        db.session.add(user)
-        flash('You can now login.')
-        return redirect(url_for('auth.login'))
-    return render_template('auth/register.html', form=form)

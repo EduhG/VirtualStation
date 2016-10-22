@@ -71,10 +71,21 @@
                 <div class="row margin">
                     <div class="input-field col s12">
                         <i class="mdi-social-person-outline prefix"></i>
-                        {{ form.username(class_="validate", **{'aria-describedby':"usernameHelpText"} ) }}
-                        <label for="username" data-error="" data-success="" class="center-align">Username</label>
-                        {% for message in form.username.errors %}
-                            <div class="center-align, error" id="usernameHelpText">{{ message }}</div>
+                        {{ form.first_name(class_="validate", **{'aria-describedby':"firstNameHelpText"} ) }}
+                        <label for="first_name" data-error="" data-success="" class="center-align">First Name</label>
+                        {% for message in form.first_name.errors %}
+                            <div class="center-align, error" id="firstNameHelpText">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-social-person-outline prefix"></i>
+                        {{ form.other_names(class_="validate", **{'aria-describedby':"otherNamesHelpText"} ) }}
+                        <label for="other_names" data-error="" data-success="" class="center-align">Other Names</label>
+                        {% for message in form.other_names.errors %}
+                            <div class="center-align, error" id="otherNamesHelpText">{{ message }}</div>
                         {% endfor %}
                     </div>
                 </div>
@@ -86,6 +97,17 @@
                         <label for="email" data-error="wrong" data-success="right" class="center-align">Email</label>
                         {% for message in form.email.errors %}
                             <div class="center-align, error" id="emailHelpText">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-social-person-outline prefix"></i>
+                        {{ form.username(class_="validate", **{'aria-describedby':"usernameHelpText"} ) }}
+                        <label for="username" data-error="" data-success="" class="center-align">Username</label>
+                        {% for message in form.username.errors %}
+                            <div class="center-align, error" id="usernameHelpText">{{ message }}</div>
                         {% endfor %}
                     </div>
                 </div>
