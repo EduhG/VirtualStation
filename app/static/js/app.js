@@ -77,6 +77,33 @@ $(document).ready(function () {
 
     });
 
+    $('.display_notes').click(function () {
+        var search_id = this.id;
+
+        $.ajax({
+            url: "/my_search_results",
+            method: "GET",
+            dataType: 'html',
+            data: {
+                search_id: search_id
+            },
+            success: function(data) {
+                console.log(data);
+
+                if(data.length > 0){
+                    $('#search_result').html(data);
+                } else {
+                    $( "#search_result" ).load( data );
+                }
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+
+        return false;
+    });
+
     $("#add_full_name").prop('disabled', true);
 
     $("#add_search_id").keyup(function(){

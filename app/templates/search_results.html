@@ -1,0 +1,7 @@
+<ul id="task-card" class="collection with-header" style="border-left: 0px solid #fff!important; padding: 0px; margin: 0px">
+    {% for result in search_results %}
+        <li class="collection-item dismissable" style="padding: 20px !important;  margin:10px">
+            <label>{{ result.notes }}.</label>
+        </li>
+    {% endfor %}
+</ul>

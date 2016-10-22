@@ -1,10 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Virtual Station</title>
+    <!-- CORE CSS-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../static/plugins/materialize/css/materialize.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/css/app.css">
+
 </head>
-<body>
+
+<body class="white">
+    <div class="row" style="margin: 0px !important; padding: 0px">
+        <div class="">
+            <div class="row">
+                <nav class="brown darken-2 z-depth-1 white-text" style="position: relative !important; z-index:10000 !important;">
+                    <div class="nav-wrapper" style="padding-left:30px; padding-right:30px">
+                        <a id="logo-container" href="#" class="brand-logo">Virtual Station</a>
+                        <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                        <ul class="right hide-on-med-and-down">
+                            {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('auth.signout') }}">Sign Out</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="row white-text">
+                <div class="col s12 m6 l4">
+                    <div class="card" style="padding: 0px;">
+                        <div class="card-content" style="height: 430px; padding:0">
+                            <ul id="task-card" class="collection with-header" style="padding: 0px; margin: 0px">
+                                <li class="collection-header teal">
+                                    <h4 class="task-card-title white-text">Reported Cases</h4>
+                                    <p class="task-card-date white-text">{{ current_date }}<!--October 17, 2016--></p>
+                                </li>
+
+                                {% for case in cases_notes %}
+                                    <li class="collection-item dismissable" style="padding: 20px !important">
+                                        <label>{{ case['description'] }}. <a href="" id=" {{ case['id'] }} " class="display_notes secondary-content"><span class="ultra-small">{{ case['notes_count'] }}</span></a>
+                                    </label>
+                                    </li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m6 l8">
+                    <div class="card" style="padding: 0px;">
+                        <div class="card-content" style="min-height: 430px; padding:0">
+                            <div id="search_result"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ================================================
+    Scripts
+    ================================================= -->
+
+    <!-- jQuery Library -->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!--materialize js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+
+    <script src="../../static/plugins/materialize/js/materialize.min.js"></script>
+
+    <script src="../../static/js/app.js"></script>
 
 </body>
+
 </html>
