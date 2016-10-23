@@ -1,0 +1,9 @@
+{% for user in search_results %}
+    <tr>
+        <td class="id">{{ user.id }}</td>
+        <td class="">{{ user.email }}</td>
+        <td class="">{{ user.username }}</td>
+        <td class="">{{ user.first_name }}</td>
+        <td class="">{{ user.other_names }}</td>
+    </tr>
+{% endfor %}

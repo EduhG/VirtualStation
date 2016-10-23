@@ -132,8 +132,8 @@
                                 <div class="row" style="margin:0">
                                     <div class="input-field col s6"></div>
                                     <div class="input-field col s6">
-                                        <input name="search_input" id="search_username" type="text" class="validate">
-                                        <label for="search_username">Username</label>
+                                        <input name="search_input" id="search_with_username" type="text" class="validate">
+                                        <label for="search_with_username">Username</label>
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +149,7 @@
                                         </tr>
                                     </thead>
 
-                                    <tbody id="tbl_body">
+                                    <tbody id="users_tbl_body">
 
                                         {% for user in system_users %}
                                         <tr>
@@ -160,6 +160,7 @@
                                             <td class="">{{ user.other_names }}</td>
                                         </tr>
                                         {% endfor %}
+
                                     </tbody>
                                 </table>
                             </div>
@@ -240,6 +241,8 @@
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="../../static/plugins/materialize/js/materialize.min.js"></script>
+
+    <script type="text/javascript" src="../../static/plugins/random_color/randomColor.min.js"></script>
     <script type="text/javascript" src="../../static/js/app.js"></script>
 </body>
 

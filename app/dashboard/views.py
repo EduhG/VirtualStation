@@ -381,3 +381,24 @@ def administrator():
     return render_template('dashboard/admin_panel.html', types_form=types_form,
                            account_form=account_form, complaints=get_complaint_type_count(),
                            system_users=system_users())
+
+
+@dashboard.route('/search_system_users')
+def search_system_users():
+    search_results = []
+
+    username = request.args.get('username')
+    print 'received username to search', username
+
+    for user in db.session.query(User).filter(User.username.like('%'+username+'%')).all():
+        user_details = {
+            'id': user.id,
+            'email': user.email,
+            'username': user.username,
+            'first_name': user.first_name,
+            'other_names': user.other_names
+        }
+
+        search_results.append(user_details)
+
+    return render_template('dashboard/search_users.html', search_results=search_results)

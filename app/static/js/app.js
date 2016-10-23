@@ -77,6 +77,33 @@ $(document).ready(function () {
 
     });
 
+    $("#search_with_username").keyup(function(){
+        var username = $('#search_with_username').val();
+
+        console.log('searching => ' + username)
+
+        $.ajax({
+            url: "/dashboard/search_system_users",
+            method: "GET",
+            dataType: 'html',
+            data: {
+                username: username
+            },
+            success: function(data) {
+                if(data.length > 0){
+                    $('#users_tbl_body').html(data);
+                } else {
+                    $( "#users_tbl_body" ).load( data );
+                }
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+
+    });
+
+
     $('.display_notes').click(function () {
         var search_id = this.id;
 
@@ -134,9 +161,6 @@ $(document).ready(function () {
             }
         });
     });
-
-    console.log("search_input => " + $('#search_input').val())
-
 
     $("#reported_search_id").keyup(function(){
         var search_id = $('#reported_search_id').val();
