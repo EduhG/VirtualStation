@@ -43,7 +43,7 @@
                         <div class="userView">
                             <img class="background" src="images/office.jpg">
                             <a href="#!user"><img class="circle" src="{{ url_for('static', filename='images/administrator.jpg') }}"></a>
-                            <a href="#!name"><span class="white-text name">{{ current_user.first_name }}</span></a>
+                            <a href="#!name"><span class="white-text name">{{ current_user.username }}</span></a>
                             <a href="#!email"><span class="white-text email">{{ current_user.email }}</span></a>
                         </div>
                     </li>
