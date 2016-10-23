@@ -23,7 +23,6 @@ def last_day_of_month():
     c_date = date.today()
     start_date = datetime(c_date.year, c_date.month, 1)
     end_date = datetime(c_date.year, c_date.month, calendar.mdays[c_date.month])
-    print start_date, end_date
 
 
 def first_day_of_month(dt):
@@ -163,8 +162,6 @@ def total_reported_cases_annually():
             details['month_count'] = monthly_count
 
             monthly.append(details)
-
-    print monthly
 
     response = jsonify(monthly)
     response.headers.add('Access-Control-Allow-Origin', '*')
@@ -321,7 +318,6 @@ def notes():
         db.session.commit()
 
         flash('Notes added successfully.')
-        print 'Notes added successfully.'
         return redirect(request.args.get('next') or url_for('dashboard.notes'))
 
     return render_template('dashboard/notes.html', form=form)
@@ -375,7 +371,7 @@ def administrator():
                     role_id=int(request.form.get('account_type')),
                     password='Password01')
         db.session.add(user)
-        flash('You can now login.')
+
         return redirect(request.args.get('next') or url_for('dashboard.administrator'))
 
     return render_template('dashboard/admin_panel.html', types_form=types_form,
@@ -388,7 +384,6 @@ def search_system_users():
     search_results = []
 
     username = request.args.get('username')
-    print 'received username to search', username
 
     for user in db.session.query(User).filter(User.username.like('%'+username+'%')).all():
         user_details = {

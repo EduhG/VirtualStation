@@ -48,9 +48,11 @@ class TestingConfig(Config):
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-         'sqlite:///' + os.path.join(BASE_DIR, 'virtual_station.db')
+    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
     DATABASE_CONNECT_OPTIONS = {}
+    DEBUG = True
+    TESTING = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 
 config = {
