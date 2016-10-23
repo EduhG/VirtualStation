@@ -350,11 +350,8 @@ def administrator():
         return redirect(request.args.get('next') or url_for('dashboard.administrator'))
 
     if account_form.validate_on_submit() and account_form.validate():
-        print 'account_form', request.form.get('account_type')
         first = account_form.first_name.data
         last = account_form.other_names.data
-
-        print generate_username(first, last)
 
         user = User(email=account_form.email.data,
                     username=generate_username(first, last),
@@ -362,7 +359,7 @@ def administrator():
                     other_names=account_form.other_names.data,
                     role_id=int(request.form.get('account_type')),
                     password='Password01')
-        #db.session.add(user)
+        db.session.add(user)
         flash('You can now login.')
         return redirect(request.args.get('next') or url_for('dashboard.administrator'))
 
