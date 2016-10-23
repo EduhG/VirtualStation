@@ -1,6 +1,7 @@
 from flask import render_template, request, session, url_for, redirect, flash
 from flask_login import logout_user, login_required, login_user
 from forms import SigninForm, SignupForm
+from ..utils.username import generate_username
 from .models import User
 from .. import db
 from . import auth
@@ -23,8 +24,11 @@ def signin():
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
+        first = form.first_name.data
+        last = form.other_names.data
+
         user = User(email=form.email.data,
-                    username=form.username.data,
+                    username=generate_username(first, last),
                     first_name=form.first_name.data,
                     other_names=form.other_names.data,
                     password=form.password.data)
