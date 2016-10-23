@@ -327,6 +327,21 @@ def notes():
     return render_template('dashboard/notes.html', form=form)
 
 
+def system_users():
+    system_users_list = []
+    for user in db.session.query(User).filter(User.role_id != 1).all():
+        user_details = {
+            'id': user.id,
+            'email': user.email,
+            'username': user.username,
+            'first_name': user.first_name,
+            'other_names': user.other_names
+        }
+
+        system_users_list.append(user_details)
+    return system_users_list
+
+
 @dashboard.route('/administrator', methods=['GET', 'POST'])
 @login_required
 def administrator():
@@ -364,4 +379,5 @@ def administrator():
         return redirect(request.args.get('next') or url_for('dashboard.administrator'))
 
     return render_template('dashboard/admin_panel.html', types_form=types_form,
-                           account_form=account_form, complaints=get_complaint_type_count())
+                           account_form=account_form, complaints=get_complaint_type_count(),
+                           system_users=system_users())

@@ -150,19 +150,12 @@
                                     </thead>
 
                                     <tbody id="tbl_body">
-                                        <div>
-                                            <ul id="table_actions" class="dropdown-content" style="width: auto !important;">
-                                                <li style="width: auto !important;"><a href="{{ url_for('dashboard.notes') }}">Add Notes</a></li>
-                                                <li class="divider"></li>
-                                                <li><a class="modal-trigger use-address" href="#modal1">Close Case</a></li>
-                                                <li class="divider"></li>
-                                            </ul>
-                                        </div>
 
                                         {% for user in system_users %}
                                         <tr>
                                             <td class="id">{{ user.id }}</td>
                                             <td class="">{{ user.email }}</td>
+                                            <td class="">{{ user.username }}</td>
                                             <td class="">{{ user.first_name }}</td>
                                             <td class="">{{ user.other_names }}</td>
                                         </tr>
