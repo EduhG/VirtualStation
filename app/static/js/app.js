@@ -64,10 +64,9 @@ $(document).ready(function () {
                 console.log(data);
 
                 if(data.length > 0){
-                    //$( "#result" ).load( data );
                     $('#result').html(data);
                 } else {
-                    $( "#result" ).load( data );
+                    $( "#result" ).html(data);
                 }
             },
             error: function(data) {
@@ -120,7 +119,7 @@ $(document).ready(function () {
                 if(data.length > 0){
                     $('#search_result').html(data);
                 } else {
-                    $( "#search_result" ).load( data );
+                    $( "#search_result" ).html(data);
                 }
             },
             error: function(data) {

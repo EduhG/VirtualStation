@@ -204,7 +204,7 @@ def reported_cases_search():
 
     ref_id = request.args.get('search_id')
 
-    for case in db.session.query(ReportedCase).filter(ReportedCase.id.like('%'+ref_id+'%')).all():
+    for case in db.session.query(ReportedCase).filter(ReportedCase.id_number.like('%'+ref_id+'%')).all():
         found = {
             'id': case.id,
             'id_number': case.id_number,
