@@ -87,16 +87,6 @@
 
                                 <div class="row margin" style="margin: 0px !important">
                                     <div class="input-field col s12">
-                                        <i class="mdi-social-person-outline prefix"></i> {{ form.username(class_="validate", **{'aria-describedby':"usernameHelpText"} ) }}
-                                        <label for="username" data-error="" data-success="" class="left-align">Username</label>
-                                        {% for message in form.username.errors %}
-                                        <div class="left-align, error" id="usernameHelpText">{{ message }}</div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-
-                                <div class="row margin" style="margin: 0px !important">
-                                    <div class="input-field col s12">
                                         <i class="mdi-action-lock-outline prefix"></i> {{ form.password( class_="validate", **{'aria-describedby':"passwordHelpText"} ) }}
                                         <label for="password">Password</label>
                                         {% for message in form.password.errors %}

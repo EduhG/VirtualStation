@@ -93,7 +93,7 @@ $(document).ready(function () {
                 if(data.length > 0){
                     $('#users_tbl_body').html(data);
                 } else {
-                    $( "#users_tbl_body" ).load( data );
+                    $( "#users_tbl_body" ).html(data);
                 }
             },
             error: function(data) {

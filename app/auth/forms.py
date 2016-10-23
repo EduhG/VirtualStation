@@ -16,7 +16,7 @@ class SignupForm(Form):
     other_names = StringField('Other Names', [validators.DataRequired("Please enter your user name.")])
     email = StringField("Email", [validators.DataRequired("Please enter your email address."),
                         validators.Email("Please enter your email address.")])
-    username = StringField('User Name', [validators.DataRequired("Please enter your user name.")])
+    # username = StringField('User Name', [validators.DataRequired("Please enter your user name.")])
     password = PasswordField('Password', [validators.DataRequired("Please enter a password.")])
     password_again = PasswordField('Confirm Password', [validators.DataRequired("Please enter a password.")])
 

@@ -271,7 +271,7 @@ def list_cases():
     form = CloseCaseForm(request.form)
     search_results = []
 
-    for case in db.session.query(ReportedCase).filter(ReportedCase.id.like('%%')).all():
+    for case in db.session.query(ReportedCase).all():
         found = {
             'id': case.id,
             'id_number': case.id_number,
