@@ -98,7 +98,7 @@
                             <div class="row">
                                 <div class="input-field col s12">
                                     {{ form.description( class_="validate materialize-textarea", **{'aria-describedby':"descriptionHelpText"} ) }}
-                                    <label for="description">Email</label>
+                                    <label for="description">Description</label>
                                     {% for message in form.description.errors %}
                                         <div class="center-align, error" id="descriptionHelpText">{{ message }}</div>
                                     {% endfor %}

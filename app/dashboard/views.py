@@ -129,7 +129,7 @@ def closed_cases_chart():
         complaints = {}
 
         count = db.session.query(ReportedCase).filter_by(
-            complaint_type=complaint.complaint).filter(ReportedCase.case_closed == 1).count()
+            complaint_type=complaint.complaint).filter(ReportedCase.case_closed == True).count()
         # filter(and_(ReportedCase.complaint_type == complaint.complaint, ReportedCase.case_closed == 1))
         print complaint.complaint, " => ", count
         complaints["complaint"] = complaint.complaint
