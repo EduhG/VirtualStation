@@ -3,7 +3,7 @@
 
 <head>
     <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="../../static/plugins/materialize/css/materialize.min.css" media="screen,projection" />
 
@@ -179,17 +179,17 @@
     </div>
 
     <!--Import jQuery before materialize.js-->
-    <!--<script type="text/javascript" src="../../static/plugins/jquery/jquery-2.1.1.min.js"></script>-->
+    <script type="text/javascript" src="{{ url_for('static', filename='plugins/jquery/jquery-2.1.1.min.js') }}"></script>
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
 
     <script type="text/javascript" src="../../static/plugins/materialize/js/materialize.min.js"></script>
 
-    <script type="text/javascript" src="../../static/plugins/chartjs/chart.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='plugins/chartjs/chart.min.js') }}"></script>
 
     <script type="text/javascript" src="../../static/plugins/random_color/randomColor.min.js"></script>
 
-    <script type="text/javascript" src="../../static/js/app.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 
 </html>

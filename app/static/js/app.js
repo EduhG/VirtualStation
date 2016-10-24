@@ -3,6 +3,8 @@
  */
 
 $(document).ready(function () {
+    alert();
+
     $('select').material_select();
 
     $('.datepicker').pickadate({

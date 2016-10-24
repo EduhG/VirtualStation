@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+<head>
+{% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Station</title>
+
+    {% block foundationcss %}{% endblock %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/materialize/css/materialize.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+{% endblock %}
+</head>
+<body>
+    <div id="body-wrapper" class="body-wrapper">
+        {% block content %}{% endblock %}
+    </div>
+{% block footer %}
+    <script src="{{ url_for('static', filename='plugins/jquery/jquery-2.2.4.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='plugins/materialize/js/materialize.min.js') }}"></script>
+    {% block foundationjs %}{% endblock %}
+
+    <script src="{{ url_for('static', filename='plugins/materialize/js/materialize.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='plugins/random_color/randomColor.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+{% endblock %}
+</body>
+</html>
