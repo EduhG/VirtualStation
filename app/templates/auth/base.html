@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block blueprintcss %}
+<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="row header" style="margin: 0px !important; padding: 0px !impotant">
+        <div class="header-container">
+            <div class="row">
+                <ul id="dropdown1" class="dropdown-content">
+                    <li style="width: 200px !important;"><a href="../../templates/dashboard/new-case.html">Open New Case</a></li>
+                    <li><a href="../../templates/dashboard/list-cases.html">List Open Cases</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#!">Search Cases</a></li>
+                </ul>
+
+                <nav class="z-depth-0 white-text" style="position: relative !important; z-index:10000 !important; background: transparent !important;">
+                    <div class="nav-wrapper" style="padding-left:30px; padding-right:30px">
+                        <a id="logo-container" href="#" class="brand-logo">Virtual Station</a>
+                        <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                        <ul class="right hide-on-med-and-down">
+                            <li><a href="{{ url_for('home.index') }}">Home</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+            {% block auth_content %}{% endblock %}
+
+        </div>
+
+    </div>
+{% endblock %}
+{% block blueprintjs %}
+
+{% endblock %}

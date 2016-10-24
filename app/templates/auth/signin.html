@@ -1,127 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "auth/base.html" %}
+{% block auth_content %}
+    <div class="row form-content valign-wrapper">
+        <div class="center-align" style="width: 100%">
+            <div id="login-page" class="row" style="width:400px; padding-top: 20px">
+                <div class="col s12 z-depth-6 card-panel">
+                    <form class="login-form" action="{{ url_for('auth.signin') }}" method=post>
+                        {{ form.hidden_tag() }}
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Virtual Station</title>
-    <!-- CORE CSS-->
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <link rel="stylesheet" href="../../static/plugins/materialize/css/materialize.min.css">
-
-    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-
-    <link rel="stylesheet" href="../../static/css/app.css">
-
-</head>
-
-<body class="">
-    <div class="row header" style="margin: 0px !important; padding: 0px !impotant">
-        <div class="header-container">
-            <div class="row">
-                <ul id="dropdown1" class="dropdown-content">
-                    <li style="width: 200px !important;"><a href="../../templates/dashboard/new-case.html">Open New Case</a></li>
-                    <li><a href="../../templates/dashboard/list-cases.html">List Open Cases</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#!">Search Cases</a></li>
-                </ul>
-
-                <nav class="z-depth-0 white-text" style="position: relative !important; z-index:10000 !important; background: transparent !important;">
-                    <div class="nav-wrapper" style="padding-left:30px; padding-right:30px">
-                        <a id="logo-container" href="#" class="brand-logo">Virtual Station</a>
-                        <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-                        <ul class="right hide-on-med-and-down">
-                            <li><a href="{{ url_for('home.index') }}">Home</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-
-            <div class="row form-content valign-wrapper">
-                <div class="center-align" style="width: 100%">
-                    <div id="login-page" class="row" style="width:400px; padding-top: 20px">
-                        <div class="col s12 z-depth-6 card-panel">
-                            <form class="login-form" action="{{ url_for('auth.signin') }}" method=post>
-                                {{ form.hidden_tag() }}
-
-                                <div class="row">
-                                    <div class="input-field col s12 center">
-                                        <p class="center login-form-text">Virtual Station - Signin</p>
-                                    </div>
-                                </div>
-
-                                <div class="row margin" style="margin: 0px !important">
-                                    <div class="input-field col s12">
-                                        <i class="mdi-social-person-outline prefix"></i> {{ form.email( class_="validate", **{'aria-describedby':"emailHelpText"} ) }}
-                                        <label for="email" data-error="" data-success="" class="left-align">Email</label>
-                                        {% for message in form.email.errors %}
-                                        <div class="left-align, error" id="emailHelpText">{{ message }}</div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-
-                                <div class="row margin" style="margin: 0px !important">
-                                    <div class="input-field col s12">
-                                        <i class="mdi-action-lock-outline prefix"></i> {{ form.password( class_="validate", **{'aria-describedby':"passwordHelpText"} ) }}
-                                        <label class="left-align" for="password"></label>
-                                        {% for message in form.password.errors %}
-                                        <div class="left-align, error" id="passwordHelpText">{{ message }}</div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-
-                                <div class="row" style="padding: 10px !important">
-                                    <div class="left-align input-field col s12 m12 l12  login-text">
-                                        {{ form.remember_me }}
-                                        <label class="left-align" for="remember_me">Remember me</label>
-                                    </div>
-                                </div>
-
-                                {{ form.submit(class_="btn waves-effect waves-light col s12") }}
-
-                                <div class="row" style="margin: 0px !important">
-                                    <div class="input-field col s12 m12 l12">
-                                        <p class="margin medium-small">Dont have an Account? <a href="{{ url_for('auth.signup') }}">Create Account</a></p>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="padding: 10px !important">
-                                    <div class="input-field col s6 m6 l6">
-
-                                    </div>
-                                    <div class="input-field col s12 m12 l12">
-                                        <p>Username: 'admin@vs.com': password = 'admin'</p>
-                                        <!--<p class="margin right-align medium-small"><a href="forgot-password.html">Forgot password?</a></p>-->
-                                    </div>
-                                </div>
-
-                            </form>
-
+                        <div class="row">
+                            <div class="input-field col s12 center">
+                                <p class="center login-form-text">Virtual Station - Signin</p>
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="row margin" style="margin: 0px !important">
+                            <div class="input-field col s12">
+                                <i class="mdi-social-person-outline prefix"></i> {{ form.email( class_="validate", **{'aria-describedby':"emailHelpText"} ) }}
+                                <label for="email" data-error="" data-success="" class="left-align">Email</label>
+                                {% for message in form.email.errors %}
+                                <div class="left-align, error" id="emailHelpText">{{ message }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="row margin" style="margin: 0px !important">
+                            <div class="input-field col s12">
+                                <i class="mdi-action-lock-outline prefix"></i> {{ form.password( class_="validate", **{'aria-describedby':"passwordHelpText"} ) }}
+                                <label class="left-align" for="password"></label>
+                                {% for message in form.password.errors %}
+                                <div class="left-align, error" id="passwordHelpText">{{ message }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding: 10px !important">
+                            <div class="left-align input-field col s12 m12 l12  login-text">
+                                {{ form.remember_me }}
+                                <label class="left-align" for="remember_me">Remember me</label>
+                            </div>
+                        </div>
+
+                        {{ form.submit(class_="btn waves-effect waves-light col s12") }}
+
+                        <div class="row" style="margin: 0px !important">
+                            <div class="input-field col s12 m12 l12">
+                                <p class="margin medium-small">Dont have an Account? <a href="{{ url_for('auth.signup') }}">Create Account</a></p>
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding: 10px !important">
+                            <div class="input-field col s6 m6 l6">
+
+                            </div>
+                            <div class="input-field col s12 m12 l12">
+                                <p>Username: 'admin@vs.com': password = 'admin'</p>
+                                <!--<p class="margin right-align medium-small"><a href="forgot-password.html">Forgot password?</a></p>-->
+                            </div>
+                        </div>
+
+                    </form>
+
                 </div>
             </div>
         </div>
-
     </div>
-
-
-    <!-- ================================================
-    Scripts
-    ================================================= -->
-
-    <!-- jQuery Library -->
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!--materialize js-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
-
-    <script src="../../static/plugins/materialize/js/materialize.min.js"></script>
-
-</body>
-
-</html>
+{% endblock %}
