@@ -4,6 +4,10 @@
 $(document).ready(function () {
     console.log('Dashboard JS File Loaded');
 
+    $('#slide-out>li').on('click', 'a', function (e) {
+        console.log('nimefinywa');
+    });
+
     $("#search_name").prop('disabled', true);
 
     $(".use-address").click(function() {

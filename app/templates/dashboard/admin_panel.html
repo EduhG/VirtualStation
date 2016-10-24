@@ -1,4 +1,21 @@
 {% extends "dashboard/base.html" %}
+
+{% block nav_content %}
+    <li class="divider" style="margin:0"></li>
+    <li class=""><a href="{{ url_for('dashboard.index') }}" class="waves-effect waves-teal" style="">Dashboard</a></li>
+    <li class="divider" style="margin:0"></li>
+    <li class=""><a href="{{ url_for('dashboard.newcase') }}">Open New Case</a></li>
+    <li class="divider" style="margin:0"></li>
+    <li class=""><a href="{{ url_for('dashboard.list_cases') }}">List Open Cases</a></li>
+    <li class="divider" style="margin:0"></li>
+    <li class=""><a href="{{ url_for('dashboard.notes') }} ">Notes</a></li>
+    <li class="divider" style="margin:0"></li>
+    {% if current_user.role_id == 3 %}
+    <li class="bold active"><a href=" {{ url_for('dashboard.administrator') }} ">Administrator</a></li>
+    <li class="divider" style="margin:0"></li>
+    {% endif %}
+{% endblock %}
+
 {% block dashboard_content %}
     <div class="row" style="margin: 0px; margin-left: 280px; padding: 10px">
         <div class="row" style="margin:0">
