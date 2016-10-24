@@ -2,6 +2,7 @@
  * Created by eduhg on 10/24/16.
  */
 $(document).ready(function () {
+    console.log('Dashboard JS File Loaded');
 
     $("#search_name").prop('disabled', true);
 
